@@ -1,51 +1,48 @@
-# Python Bots & Scripts Collection
+# Google Forms Master Automator v2.0
 
-A collection of useful Python scripts for automation, utility, and fun. This repository is being systematically reviewed and refined to ensure high reliability, modern standards, and clear documentation.
+A professional-grade Selenium-based automator for Google Forms. Supports all field types and features an interactive configuration builder with automated field discovery.
 
-## 🚀 Script Catalog
+## Features
+- **Field Discovery:** Automatically scans the form to find questions and their internal `aria-labelledby` IDs.
+- **Full Input Support:**
+  - Short Answer & Paragraph (with Faker data support)
+  - Multiple Choice & Checkboxes
+  - Dropdowns (Listboxes)
+  - Linear Scales (1-10)
+  - Grids (Multiple Choice Grid & Checkbox Grid)
+  - Date & Time
+  - File Upload (via Google Drive picker)
+- **Persistence:** Saves configurations to `form_config.json` for repeated use.
+- **Stealth:** Uses advanced Selenium options to minimize bot detection.
 
-### 📺 Media Utilities
-*   **[Utube.py](./Utube.py)**: A robust YouTube playlist/video downloader powered by `yt-dlp`. Features resolution selection and error handling.
+## Prerequisites
+- Python 3.8+
+- Google Chrome installed
+- Chrome Driver (handled automatically by modern Selenium/webdriver-manager)
 
-### 🤖 Automation Bots
-*   **[whatsapp_master.py](./whatsapp_master.py)**: Sophisticated WhatsApp automation with an interactive CLI. Supports text, images, and documents.
-*   **[automate_google_forms.py](./automate_google_forms.py)**: A universal Google Forms automator. Replaces all previous form-specific bots.
-*   **[Auto GMerchantFeed.py](./Auto%20GMerchantFeed.py)**: Automates navigation to Google Merchant Center feeds. (Requires `.env` setup).
-*   **[Auto OpIMFeed.py](./Auto%20OpIMFeed.py)**: Automates product feed management on WordPress/Infinique backends.
+## Installation
+```bash
+pip install selenium faker questionary rich
+```
 
-### 🛠️ Utilities
-*   **[bulk_mail.py](./bulk_mail.py)**: Secure bulk email sender using Gmail SMTP and environment variables. Features personalized templates and CSV support.
-*   **[documentor_bot.py](./documentor_bot.py)**: AI-powered script that uses Google Gemini to generate high-quality docstrings and format Python code using `black` and `isort`.
-*   **[workout.py](./workout.py)**: Generates a personalized workout plan PDF using `fpdf2`.
-
-### 🎮 Games & Fun
-*   **[Ztype_Game_Bot.py](./Ztype_Game_Bot.py)**: An automated bot for the Ztype typing game using EasyOCR for text recognition and PyAutoGUI for typing.
-
----
-
-## ⚙️ Setup & Usage
-
-### Prerequisites
-- Python 3.10+
-- Chrome Browser (for Selenium-based bots)
-- [FFmpeg](https://ffmpeg.org/) (recommended for `Utube.py` high-res downloads)
-
-### Installation
-1. Clone the repository.
-2. Install dependencies:
+## Usage
+1. **Interactive Mode:**
+   Run the script and follow the prompts to scan a form and build a configuration.
    ```bash
-   pip install -r requirements.txt
+   python automate_google_forms.py
    ```
-3. Configure your credentials in a `.env` file (see `.env.example`):
-   ```bash
-   cp .env.example .env
-   # Edit .env with your secrets
-   ```
+2. **Automated Mode:**
+   If a `form_config.json` exists, the script will ask if you want to use it.
 
----
+## Configuration (JSON)
+The `form_config.json` structure:
+- `url`: The form URL.
+- `loop`: Number of submissions.
+- `fields`: Array of field objects.
+  - `type`: text, radio, checkbox, dropdown, scale, grid, date, time.
+  - `id`: The internal `aria-labelledby` ID (e.g., `i1`).
+  - `option`/`options`: The text of the option(s) to select.
 
-## 📂 Advanced Projects
-*   **[mytube/](./mytube/)**: A more advanced, full-stack YouTube management project featuring a CLI and a Web UI.
-
----
-*Maintained with ❤️ by Mohammed Hammaad Mateen*
+## Troubleshooting
+- **Sign-in Required:** If a form requires Google Sign-in, you must manually sign in once in the browser window opened by the script (the script waits 15s by default) or use a profile.
+- **Dynamic IDs:** While IDs like `i1` are usually stable for a specific form version, if the form is edited, you may need to re-run the "Scan" feature.

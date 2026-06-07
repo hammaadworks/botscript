@@ -3,7 +3,7 @@
 Professional Media Downloader, Looper, and Clipper for Pro Memorization.
 
 ## 🚀 Quick Start
-We use a `Makefile` to simplify the workflow.
+We use a `Makefile` to simplify the workflow and `uv` for lightning-fast dependency management.
 
 ```bash
 # 1. Install everything
@@ -12,34 +12,22 @@ make install
 # 2. Run the Pro TUI Dashboard
 make run-tui
 
-# 3. Run the Web GUI
-make run-web
+# 3. Or use the Interactive CLI Downloader
+make run-download
 ```
 
 ---
 
 ## 🚀 Overview
-Wgetube is a dual-interface tool designed for high-performance media downloading and rote learning (e.g., Quran Hifz). 
-...
-1.  **TUI (Pro Mode):** A trendy Terminal User Interface built with `Textual` for downloading, looping, and clipping directly in your terminal.
-2.  **Web (GUI):** A beautiful, minimal client-side app for visual A-B looping, historical loop tracking, and local video clipping using FFmpeg WASM.
+Wgetube is a terminal-first tool designed for high-performance media downloading and rote learning (e.g., Quran Hifz). It provides a full suite of tools to download, loop, and clip media directly from your terminal.
+
+1.  **TUI (Pro Mode):** A trendy Terminal User Interface built with `Textual` for downloading, looping, and clipping with visual feedback.
+2.  **CLI (Interactive):** A fast, question-based interface for batch downloading playlists, shorts, and videos.
+3.  **Clipper (CLI):** Instant FFmpeg-powered clipping for precision media cutting.
 
 ---
 
-## 📚 Documentation
-Detailed guides are available in the [@docs](./@docs) folder:
-- [Production & Startup Guide](./@docs/PRODUCTION.md)
-
----
-
-## 🛠 TUI Usage (`/cli`)
-Built with Python, Typer, and Textual.
-
-### Setup
-```bash
-# Install dependencies using uv
-uv sync
-```
+## 🛠 Usage (`/cli`)
 
 ### Starting the TUI
 ```bash
@@ -49,33 +37,21 @@ uv run cli/main.py tui
 
 ### Starting the Interactive Downloader
 ```bash
-uv run cli/main.py interactive
+uv run cli/main.py download
 ```
-*A faster, CLI-based interactive playlist downloader.*
+*Supports Shorts, Videos, and Playlists with batch selection and resolution control.*
 
----
-
-## 🌐 Web App (`/web`)
-A minimal Vite + React application focused on user privacy and local processing.
-...
-### Features
--   **Looper Tutor:** Set precise A-B points and track loop counts.
--   **Local Clipping:** Trim and export clips entirely in your browser using `ffmpeg.wasm`.
--   **Zero Login:** All progress and history are saved locally in your browser's IndexedDB.
-
-### Setup
+### Fast Clipping
 ```bash
-cd web
-pnpm install
-pnpm dev
+uv run cli/main.py clip path/to/video.mp4 --start 00:01:00 --end 00:01:30
 ```
 
 ---
 
 ## 🎨 Design Philosophy
--   **Minimalist:** Focused on the task of memorization without distractions.
+-   **Terminal First:** Focused on efficiency and high-signal terminal interfaces.
 -   **Privacy First:** No servers, no accounts. Your data stays on your machine.
--   **Trendy TUI:** Professional, high-signal terminal interface for "Pro" users.
+-   **Robustness:** Powered by `yt-dlp` and `FFmpeg` for industrial-grade reliability.
 
 ---
 
