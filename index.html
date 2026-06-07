@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Bots & Scripts | Mohammed Hammaad Mateen</title>
+    <meta name="description" content="A premium collection of automated Python scripts for YouTube downloading, WhatsApp automation, Google Forms, and more. Open-source and resourceful.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); }
+        .card-hover:hover { transform: translateY(-4px); transition: all 0.3s ease; }
+    </style>
+    <!-- Structured Data (SEO) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareSourceCode",
+      "name": "Python Bots & Scripts Collection",
+      "description": "A collection of Python scripts for automation, media downloading, and productivity utilities.",
+      "author": {
+        "@type": "Person",
+        "name": "Mohammed Hammaad Mateen"
+      },
+      "codeRepository": "https://github.com/MohammedHMateen/python-bots",
+      "runtimePlatform": "Python 3.10+",
+      "programmingLanguage": "Python"
+    }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 glass border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold">P</div>
+                    <span class="font-bold text-lg tracking-tight">PythonBots</span>
+                </div>
+                <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+                    <a href="#media" class="hover:text-indigo-600 transition-colors">Media</a>
+                    <a href="#automation" class="hover:text-indigo-600 transition-colors">Automation</a>
+                    <a href="#utilities" class="hover:text-indigo-600 transition-colors">Utilities</a>
+                    <a href="https://github.com/MohammedHMateen/python-bots" target="_blank" class="px-4 py-2 bg-slate-900 text-white rounded-full hover:bg-slate-800 transition-all">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="relative overflow-hidden bg-white pt-16 pb-24 lg:pt-32 lg:pb-40 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight text-slate-900 mb-6">
+                Automate Your <span class="text-indigo-600">Digital Life</span>
+            </h1>
+            <p class="text-xl text-slate-600 max-w-2xl mx-auto mb-10 leading-relaxed">
+                A premium collection of Python scripts for web automation, media management, and productivity. Built for reliability, refined for performance.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#catalog" class="px-8 py-4 bg-indigo-600 text-white rounded-xl font-bold shadow-lg shadow-indigo-200 hover:bg-indigo-700 hover:-translate-y-0.5 transition-all">
+                    Explore Scripts
+                </a>
+                <a href="llms.txt" class="px-8 py-4 bg-white border border-slate-200 text-slate-700 rounded-xl font-bold hover:bg-slate-50 hover:border-slate-300 transition-all">
+                    View AI Context (llms.txt)
+                </a>
+            </div>
+        </div>
+        <!-- Decorative bg -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-10">
+            <div class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-400 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-400 rounded-full blur-3xl"></div>
+        </div>
+    </header>
+
+    <!-- Search / Filter -->
+    <section id="catalog" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="relative max-w-lg mx-auto mb-16">
+            <input type="text" id="searchInput" placeholder="Search for scripts (e.g. YouTube, WhatsApp, Form)..." 
+                class="w-full px-6 py-4 rounded-2xl border border-slate-200 focus:ring-4 focus:ring-indigo-100 focus:border-indigo-500 outline-none transition-all shadow-sm">
+            <div class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </div>
+        </div>
+
+        <!-- Catalog Grid -->
+        <div id="scriptGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Media: Utube -->
+            <div class="script-card group bg-white p-8 rounded-3xl border border-slate-100 shadow-sm card-hover" data-tags="youtube downloader media video wgetube">
+                <div class="w-12 h-12 bg-red-50 text-red-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-red-600 group-hover:text-white transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Wgetube CLI</h3>
+                <p class="text-slate-600 text-sm leading-relaxed mb-6">Part of the Wgetube suite. A robust interactive playlist and video downloader powered by yt-dlp.</p>
+                <div class="space-y-2 mb-8">
+                    <div class="flex items-center gap-2 text-xs font-medium text-slate-500">
+                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span> High-Res Support
+                    </div>
+                    <div class="flex items-center gap-2 text-xs font-medium text-slate-500">
+                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span> Interactive Mode
+                    </div>
+                </div>
+                <a href="mytube/cli/Utube.py" class="inline-flex items-center font-bold text-indigo-600 hover:text-indigo-700 gap-1 text-sm">
+                    View Script <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                </a>
+            </div>
+
+            <!-- Automation: WhatsApp Master -->
+            <div class="script-card group bg-white p-8 rounded-3xl border border-slate-100 shadow-sm card-hover" data-tags="whatsapp automation selenium bot master">
+                <div class="w-12 h-12 bg-green-50 text-green-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-green-600 group-hover:text-white transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3">WhatsApp Master</h3>
+                <p class="text-slate-600 text-sm leading-relaxed mb-6">Sophisticated WhatsApp Web automation. Interactive CLI to search contacts and send text/media with ease.</p>
+                <div class="space-y-2 mb-8">
+                    <div class="flex items-center gap-2 text-xs font-medium text-slate-500">
+                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span> Interactive CLI
+                    </div>
+                    <div class="flex items-center gap-2 text-xs font-medium text-slate-500">
+                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span> Media & Docs
+                    </div>
+                </div>
+                <a href="whatsapp_master.py" class="inline-flex items-center font-bold text-indigo-600 hover:text-indigo-700 gap-1 text-sm">
+                    View Script <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                </a>
+            </div>
+
+            <!-- AI: Documentor -->
+            <div class="script-card group bg-white p-8 rounded-3xl border border-slate-100 shadow-sm card-hover" data-tags="ai gemini documentation tool">
+                <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3">AI Documentor</h3>
+                <p class="text-slate-600 text-sm leading-relaxed mb-6">Intelligent bot that uses Google Gemini AI to generate Google-style docstrings and format code automatically.</p>
+                <div class="space-y-2 mb-8">
+                    <div class="flex items-center gap-2 text-xs font-medium text-slate-500">
+                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span> Gemini 2.0
+                    </div>
+                    <div class="flex items-center gap-2 text-xs font-medium text-slate-500">
+                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span> Clean Code
+                    </div>
+                </div>
+                <a href="documentor_bot.py" class="inline-flex items-center font-bold text-indigo-600 hover:text-indigo-700 gap-1 text-sm">
+                    View Script <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                </a>
+            </div>
+
+            <!-- Utility: Bulk Mail -->
+            <div class="script-card group bg-white p-8 rounded-3xl border border-slate-100 shadow-sm card-hover" data-tags="email bulk mail automation csv">
+                <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Bulk Emailer</h3>
+                <p class="text-slate-600 text-sm leading-relaxed mb-6">Personalized email sender using CSV data. Perfect for newsletters and notifications via SMTP.</p>
+                <div class="space-y-2 mb-8">
+                    <div class="flex items-center gap-2 text-xs font-medium text-slate-500">
+                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span> CSV Processing
+                    </div>
+                    <div class="flex items-center gap-2 text-xs font-medium text-slate-500">
+                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span> Secure Credentials
+                    </div>
+                </div>
+                <a href="bulk_mail.py" class="inline-flex items-center font-bold text-indigo-600 hover:text-indigo-700 gap-1 text-sm">
+                    View Script <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                </a>
+            </div>
+
+            <!-- Game: Ztype Bot -->
+            <div class="script-card group bg-white p-8 rounded-3xl border border-slate-100 shadow-sm card-hover" data-tags="game bot ztype ocr automated typing">
+                <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-amber-600 group-hover:text-white transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a2 2 0 11-4 0V4zM18 8a2 2 0 114 0v1a2 2 0 11-4 0V8zM11 15a2 2 0 114 0v1a2 2 0 11-4 0v-1zM18 16a2 2 0 114 0v1a2 2 0 11-4 0v-1zM4 11a2 2 0 114 0v1a2 2 0 11-4 0v-1z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Ztype Game Bot</h3>
+                <p class="text-slate-600 text-sm leading-relaxed mb-6">Play Ztype automatically with Computer Vision. Uses EasyOCR to read screen words and types them instantly.</p>
+                <div class="space-y-2 mb-8">
+                    <div class="flex items-center gap-2 text-xs font-medium text-slate-500">
+                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span> Computer Vision
+                    </div>
+                    <div class="flex items-center gap-2 text-xs font-medium text-slate-500">
+                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span> OCR Optimized
+                    </div>
+                </div>
+                <a href="Ztype_Game_Bot.py" class="inline-flex items-center font-bold text-indigo-600 hover:text-indigo-700 gap-1 text-sm">
+                    View Script <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                </a>
+            </div>
+
+            <!-- Automation: Google Forms Master -->
+            <div class="script-card group bg-white p-8 rounded-3xl border border-slate-100 shadow-sm card-hover" data-tags="google forms automation bot faker master">
+                <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-purple-600 group-hover:text-white transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Google Forms Master</h3>
+                <p class="text-slate-600 text-sm leading-relaxed mb-6">Universal Google Forms automator. Interactive "frontend" to define fields, use Faker, or random values.</p>
+                <div class="space-y-2 mb-8">
+                    <div class="flex items-center gap-2 text-xs font-medium text-slate-500">
+                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span> Configuration Driven
+                    </div>
+                    <div class="flex items-center gap-2 text-xs font-medium text-slate-500">
+                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span> Universal Support
+                    </div>
+                </div>
+                <a href="automate_google_forms.py" class="inline-flex items-center font-bold text-indigo-600 hover:text-indigo-700 gap-1 text-sm">
+                    View Script <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Project: Wgetube -->
+    <section class="bg-indigo-900 py-24 text-white overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-16">
+            <div class="flex-1 text-center lg:text-left">
+                <span class="text-indigo-300 font-bold tracking-widest text-sm uppercase mb-4 block">Advanced Project</span>
+                <h2 class="text-4xl lg:text-5xl font-extrabold mb-6 tracking-tight">Wgetube Pro</h2>
+                <p class="text-indigo-100 text-lg mb-10 leading-relaxed max-w-xl">
+                    Our most advanced YouTube tool. A full-stack solution featuring a high-performance TUI and a beautiful Web interface for professional media clipping and looping.
+                </p>
+                <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+                    <a href="mytube/README.md" class="px-6 py-3 bg-white text-indigo-900 rounded-xl font-bold hover:bg-indigo-50 transition-all">Explore Project</a>
+                    <a href="mytube/web/" class="px-6 py-3 bg-indigo-700 text-white rounded-xl font-bold border border-indigo-600 hover:bg-indigo-600 transition-all">Launch Web UI</a>
+                </div>
+            </div>
+            <div class="flex-1 relative">
+                <!-- Visual representation -->
+                <div class="w-full aspect-video bg-indigo-800 rounded-3xl border-4 border-indigo-700 flex items-center justify-center overflow-hidden shadow-2xl relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-transparent"></div>
+                    <span class="font-mono text-indigo-400 text-xs">// Pro Looping Interface</span>
+                    <div class="absolute bottom-4 left-4 right-4 h-1 bg-indigo-700 rounded-full overflow-hidden">
+                        <div class="w-2/3 h-full bg-indigo-400"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center text-white font-bold">P</div>
+                    <span class="font-bold text-lg tracking-tight">PythonBots</span>
+                </div>
+                <div class="flex gap-8 text-sm font-medium text-slate-500">
+                    <a href="https://github.com/MohammedHMateen" target="_blank" class="hover:text-indigo-600">Developer</a>
+                    <a href="llms.txt" class="hover:text-indigo-600">AI Agents</a>
+                    <a href="#" class="hover:text-indigo-600">Top</a>
+                </div>
+            </div>
+            <div class="text-center border-t border-slate-100 pt-8">
+                <p class="text-slate-400 text-sm">Maintained with dedication by Mohammed Hammaad Mateen. Alhamdulillah.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Simple Search Logic -->
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const scriptGrid = document.getElementById('scriptGrid');
+        const cards = document.querySelectorAll('.script-card');
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            cards.forEach(card => {
+                const tags = card.getAttribute('data-tags').toLowerCase();
+                const title = card.querySelector('h3').innerText.toLowerCase();
+                const desc = card.querySelector('p').innerText.toLowerCase();
+                
+                if (tags.includes(query) || title.includes(query) || desc.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

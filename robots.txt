@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mohammedhmateen.github.io/python-bots/sitemap.xml
