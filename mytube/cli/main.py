@@ -118,5 +118,13 @@ def clip(
     except Exception as e:
         console.print(f"[red]Clipping failed: {e}[/red]")
 
+def tui_app():
+    """Entry point for mytube-tui script."""
+    tui()
+
+def cli_app():
+    """Entry point for mytube-cli script."""
+    app()
+
 if __name__ == "__main__":
     app()

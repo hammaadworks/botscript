@@ -18,4 +18,5 @@ dependencies = [
 managed = true
 
 [project.scripts]
-wgetube = "cli.main:app"
+mytube-tui = "cli.main:tui_app"
+mytube-cli = "cli.main:cli_app"

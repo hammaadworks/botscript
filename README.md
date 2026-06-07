@@ -27,12 +27,16 @@ pip install selenium faker questionary rich
 
 ## Usage
 1. **Interactive Mode:**
-   Run the script and follow the prompts to scan a form and build a configuration.
+   Run the script using `uv` to handle dependencies automatically.
    ```bash
-   python automate_google_forms.py
+   uv run automate_google_forms.py
    ```
-2. **Automated Mode:**
-   If a `form_config.json` exists, the script will ask if you want to use it.
+   Follow the prompts to scan a form and build a configuration.
+
+## Advanced Randomization
+- **Dates:** Use `random_range` in your config to automatically select a date between **T-2** and **T+2** (±2 days from today).
+- **Time:** Use `random` to generate a random `HH:MM` timestamp for every submission.
+- **Auto-Generate:** The fastest way to start—scans the form and uses heuristics to fill everything instantly.
 
 ## Configuration (JSON)
 The `form_config.json` structure:
