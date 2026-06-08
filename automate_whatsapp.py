@@ -1,3 +1,11 @@
+# /// script
+# dependencies = [
+#   "selenium",
+#   "questionary",
+#   "rich",
+# ]
+# ///
+
 """
 WhatsApp Master Automator
 =========================

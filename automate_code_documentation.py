@@ -1,3 +1,12 @@
+# /// script
+# dependencies = [
+#   "google-generativeai",
+#   "python-dotenv",
+#   "black",
+#   "isort",
+# ]
+# ///
+
 import os
 import time
 import logging
