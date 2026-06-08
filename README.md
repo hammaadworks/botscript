@@ -15,14 +15,15 @@ A professional-grade email automator with a high-fidelity Rich CLI and secure SM
 - **File:** `bulk_mail.py`
 - **Asset:** <br>
   <img src="assets/bulk_mail/proof.png" width="250" alt="Proof"> <br>
-  [🎬 Watch Demo Video](https://github.com/hammaadworks/python-bots/raw/main/assets/bulk_mail/demo.mp4)
+  
+  https://github.com/hammaadworks/python-bots/raw/master/assets/bulk_mail/demo.mp4
 
 ### 2. 📝 Google Forms Master
 **Use Case:** `Data Entry` `Testing` `Survey Automation`
 An autonomous, heuristic-driven form filler that scans the DOM and uses Faker to submit data instantly.
 - **File:** `automate_google_forms.py`
 - **Asset:** <br>
-  [🎬 Watch Demo Video](https://github.com/hammaadworks/python-bots/raw/main/assets/google_forms/demo.mov)
+  https://github.com/hammaadworks/python-bots/raw/master/assets/google_forms/demo.mov
 
 ### 3. 💬 WhatsApp Master
 **Use Case:** `Customer Support` `Bulk Messaging`

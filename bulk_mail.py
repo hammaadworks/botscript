@@ -161,7 +161,7 @@ def send_bulk_emails():
 
         console.print(
             Panel(
-                f"[bold success]Alhamdulillah! Process Completed.[/bold success]\n"
+                f"[bold success]Process Complete![/bold success]\n"
                 f"Successfully sent [highlight]{count}[/highlight] out of ["
                 f"highlight]{len(recipients)}[/highlight] emails.",
                 title="Summary",

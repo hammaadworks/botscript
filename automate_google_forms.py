@@ -436,7 +436,7 @@ def main():
     except Exception as e:
         console.print(f"[bold red]Critical Error: {e}[/bold red]")
     finally:
-        console.print("\n[bold green]Success: All tasks completed. Alhamdulillah.[/bold green]")
+        console.print("\n[bold green]Success: All tasks completed![/bold green]")
         time.sleep(5)
         automator.close()
 
