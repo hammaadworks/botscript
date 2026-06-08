@@ -1,3 +1,13 @@
+# /// script
+# dependencies = [
+#   "opencv-python",
+#   "easyocr",
+#   "numpy",
+#   "pyautogui",
+#   "pillow",
+# ]
+# ///
+
 import time
 
 import cv2

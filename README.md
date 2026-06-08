@@ -16,6 +16,9 @@ A sophisticated, personalized email automator with a professional CLI.
 - **Run:** `uv run bulk_mail.py`
 - **Visuals:**
   ![Bulk Mailer Demo](assets/bulk_mail_demo.png)
+  
+  > **Demo Video:**
+  > https://github.com/MohammedHMateen/python-bots/raw/main/assets/bulk_malier.mp4
 
 ### 2. 📝 Google Forms Master
 An autonomous live-filling mode automator. No hardcoded IDs—it uses heuristics to fill any form.
@@ -30,22 +33,22 @@ An autonomous live-filling mode automator. No hardcoded IDs—it uses heuristics
 
 ### 3. 💬 WhatsApp Master
 A Selenium-based powerhouse for WhatsApp Web automation.
-- **File:** `whatsapp_master.py`
+- **File:** `automate_whatsapp.py`
 - **Features:** 
   - Contact/Group search.
   - Media and document attachment support.
   - Interactive selection.
-- **Run:** `uv run whatsapp_master.py`
+- **Run:** `uv run automate_whatsapp.py`
 - **Visuals:**
   ![WhatsApp Master Demo](assets/whatsapp_demo.png)
 
 ### 4. 📄 Documentor Bot
 Your AI-powered assistant for documenting codebases.
-- **File:** `documentor_bot.py`
+- **File:** `automate_code_documentation.py`
 - **Features:** 
   - Powered by Gemini 2.0 Flash.
   - Auto-formats and documents Python files.
-- **Run:** `uv run documentor_bot.py`
+- **Run:** `uv run automate_code_documentation.py`
 
 ---
 

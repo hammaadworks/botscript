@@ -118,25 +118,45 @@ class GoogleFormAutomator:
             # Check Radio
             radios = block.find_elements(By.XPATH, ".//div[@role='radio']")
             if radios:
-                target = choice(radios)
-                self.driver.execute_script("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'});", target)
-                time.sleep(0.2)
+                # 1. Click first to register interaction
+                first_target = radios[0]
+                self.driver.execute_script("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'});", first_target)
+                time.sleep(0.1)
                 try:
-                    target.click()
+                    first_target.click()
                 except:
-                    self.driver.execute_script("arguments[0].click();", target)
+                    self.driver.execute_script("arguments[0].click();", first_target)
+                
+                # 2. Click random to set final value
+                time.sleep(0.2)
+                target = choice(radios)
+                if target != first_target:
+                    try:
+                        target.click()
+                    except:
+                        self.driver.execute_script("arguments[0].click();", target)
                 return f"{label_text}: [Radio Selected]"
 
             # Check Checkboxes
             checks = block.find_elements(By.XPATH, ".//div[@role='checkbox']")
             if checks:
-                target = choice(checks)
-                self.driver.execute_script("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'});", target)
-                time.sleep(0.2)
+                # 1. Click first to register interaction
+                first_target = checks[0]
+                self.driver.execute_script("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'});", first_target)
+                time.sleep(0.1)
                 try:
-                    target.click()
+                    first_target.click()
                 except:
-                    self.driver.execute_script("arguments[0].click();", target)
+                    self.driver.execute_script("arguments[0].click();", first_target)
+                
+                # 2. Click random to set final value
+                time.sleep(0.2)
+                target = choice(checks)
+                if target != first_target:
+                    try:
+                        target.click()
+                    except:
+                        self.driver.execute_script("arguments[0].click();", target)
                 return f"{label_text}: [Checkbox Selected]"
 
             # Check Dropdown
@@ -154,9 +174,23 @@ class GoogleFormAutomator:
             # Check Linear Scale
             scales = block.find_elements(By.XPATH, ".//div[@data-value]")
             if scales:
+                # 1. Click first to register interaction
+                first_target = scales[0]
+                self.driver.execute_script("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'});", first_target)
+                time.sleep(0.1)
+                try:
+                    first_target.click()
+                except:
+                    self.driver.execute_script("arguments[0].click();", first_target)
+                
+                # 2. Click random to set final value
+                time.sleep(0.1)
                 target = choice(scales)
-                self.driver.execute_script("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'});", target)
-                target.click()
+                if target != first_target:
+                    try:
+                        target.click()
+                    except:
+                        self.driver.execute_script("arguments[0].click();", target)
                 return f"{label_text}: [Scale Selected]"
 
             # Check Grid
@@ -167,13 +201,23 @@ class GoogleFormAutomator:
                 for row in rows:
                     cells = row.find_elements(By.XPATH, ".//div[@role='radio' or @role='checkbox']")
                     if cells:
-                        target = choice(cells)
-                        self.driver.execute_script("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'});", target)
+                        # 1. Click first cell to register interaction
+                        first_cell = cells[0]
+                        self.driver.execute_script("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'});", first_cell)
                         time.sleep(0.1)
                         try:
-                            target.click()
+                            first_cell.click()
                         except:
-                            self.driver.execute_script("arguments[0].click();", target)
+                            self.driver.execute_script("arguments[0].click();", first_cell)
+                        
+                        # 2. Click random cell
+                        time.sleep(0.1)
+                        target = choice(cells)
+                        if target != first_cell:
+                            try:
+                                target.click()
+                            except:
+                                self.driver.execute_script("arguments[0].click();", target)
                 return f"{label_text}: [Grid Filled]"
 
             return f"{label_text}: [Unknown Type]"

@@ -1,27 +1,44 @@
-# Python Bots & Scripts Collection
+# Python Bots: The Ultimate Automation Suite
 
-A resourceful repository of automated Python scripts for web automation, media downloading, utility tools, and more. Maintained by Mohammed Hammaad Mateen.
+A collection of high-performance, autonomous, and self-contained Python scripts for professional automation. Maintained by Mohammed Hammaad Mateen.
 
-## Key Capabilities
+## 🚀 Core Philosophy
+Every script in this repository is designed as a **"one-filer"**. This means:
+- No complex installation.
+- Dependencies are declared inline using `uv` script metadata.
+- Execution is a single command: `uv run <script_name>.py`.
 
-### 📺 Media Utilities
-- **YouTube Downloader (Utube.py)**: Robust downloader for playlists and videos using `yt-dlp`. Supports 360p, 720p, and 1080p resolutions.
-- **Wgetube (mytube/)**: Full-stack CLI & Web app for pro memorization (Looping, Clipping, Downloading).
+## 🤖 Featured Automation Bots
 
-### 🤖 Automation Bots
-- **WhatsApp Automation (Auto WhatsApp.py)**: Automates sending text, images, and documents on WhatsApp Web via Selenium 4.
-- **Google Forms Automation**: Multiple scripts (`Auto GForm.py`, `Influencer GForm.py`, `Moin Math Form.py`) that generate fake data using `Faker` and automate form submissions.
-- **Feed Management**: `Auto GMerchantFeed.py` and `Auto OpIMFeed.py` for automating Google Merchant and WordPress backend feed updates.
+### 📧 Bulk Mailer Pro (`bulk_mail.py`)
+- **Capability**: Sends personalized emails using CSV data.
+- **Tech**: `smtplib`, `rich` (for CLI), `python-dotenv`.
+- **Highlights**: Beautiful progress bars, SMTP error diagnosis, and secure credential handling.
 
-### 🛠 Utilities & Fun
-- **Bulk Emailer (bulk_mail.py)**: Securely sends personalized emails from a CSV file using Gmail SMTP and `.env` credentials.
-- **AI Documentor (documentor_bot.py)**: Uses Google Gemini AI to automatically generate Google-style docstrings and format code.
-- **Workout Generator (workout.py)**: Generates personalized workout plan PDFs.
-- **Ztype Game Bot (Ztype_Game_Bot.py)**: An automated bot for the Ztype typing game using EasyOCR and PyAutoGUI.
+### 📝 Google Forms Master (`automate_google_forms.py`)
+- **Capability**: Autonomous live-filling of Google Forms.
+- **Tech**: `selenium`, `faker`.
+- **Highlights**: Uses heuristics to find and fill fields based on labels; no hardcoded element IDs required.
 
-## Usage
-Most scripts require Python 3.10+ and dependencies installed via `pip install -r requirements.txt`. Selenium scripts require a Chrome browser.
+### 💬 WhatsApp Master (`automate_whatsapp.py`)
+- **Capability**: Automates WhatsApp Web messaging.
+- **Tech**: `selenium`.
+- **Highlights**: Interactive contact selection, supports sending text, documents, and media.
 
-## Links
-- Repository: https://github.com/MohammedHMateen/python-bots
-- Catalog: https://mohammedhmateen.github.io/python-bots/ (or index.html in root)
+### 📄 Documentor Bot (`automate_code_documentation.py`)
+- **Capability**: AI-powered code documentation.
+- **Tech**: `google-generativeai` (Gemini 2.0 Flash).
+- **Highlights**: Automatically generates Google-style docstrings and formats Python files.
+
+### 🎮 Ztype Game Bot (`automate_ztype.py`)
+- **Capability**: Automated gameplay for Ztype.
+- **Tech**: `EasyOCR`, `PyAutoGUI`.
+- **Highlights**: Real-time screen OCR to detect words and automated typing for high-score performance.
+
+## 🛠 Setup
+1. Install `uv`: `curl -LsSf https://astral.sh/uv/install.sh | sh`
+2. Run any script: `uv run <script_name>.py`
+
+## 🔗 Links
+- **GitHub Repository**: [https://github.com/MohammedHMateen/python-bots](https://github.com/MohammedHMateen/python-bots)
+- **Visual Catalog**: [https://mohammedhmateen.github.io/python-bots/](https://mohammedhmateen.github.io/python-bots/)
