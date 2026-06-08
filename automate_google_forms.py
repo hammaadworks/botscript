@@ -243,7 +243,11 @@ class GoogleFormAutomator:
             self.driver.execute_script("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'});", submit_btn)
             time.sleep(0.5)
             
-            # Record page before click to detect transition
+            # Check if this is a "Submit" or just a "Next"
+            btn_text = submit_btn.text.lower()
+            is_final_submit = "submit" in btn_text or "send" in btn_text or submit_btn.get_attribute("jsname") == "M2UYVd"
+            
+            # Record page before click
             old_source = self.driver.page_source
             
             try:
@@ -251,22 +255,43 @@ class GoogleFormAutomator:
             except:
                 self.driver.execute_script("arguments[0].click();", submit_btn)
             
-            # Wait for page to change or update
-            time.sleep(2)
+            # Wait for transition
+            time.sleep(3)
             
-            # Success keywords
-            success_terms = ["response has been recorded", "Submitted", "Thank you", "Your response has been recorded", "completed"]
+            # Success keywords - expanded based on diagnostic findings
+            success_terms = [
+                "response has been recorded", 
+                "Submitted", 
+                "Thank you", 
+                "Your response has been recorded", 
+                "completed",
+                "Thanks for submitting" # Specific to the user's form
+            ]
             page_text_lower = self.driver.page_source.lower()
             
+            # 1. Primary check: Text match
             if any(term.lower() in page_text_lower for term in success_terms):
                 return "finished"
                 
-            # If page source changed but no success message, it's likely a next page
+            # 2. Secondary check: If we clicked SUBMIT and the submit button is GONE, it's likely finished
+            if is_final_submit:
+                try:
+                    # Check if any submit-like button still exists
+                    self.driver.find_element(By.XPATH, '//div[@role="button"]//span[text()="Submit" or text()="Send"] | //div[@jsname="M2UYVd"]')
+                except:
+                    # Button is gone after clicking Submit -> assume success
+                    return "finished"
+                
+            # 3. Next page check: Source changed but not finished
             if self.driver.page_source != old_source:
                 return "next_page"
                 
             return "error"
         except Exception as e:
+            # If we can't find a button but the page has success text, it might already be finished
+            page_text_lower = self.driver.page_source.lower()
+            if any(term.lower() in page_text_lower for term in ["response has been recorded", "thanks for submitting", "thank you"]):
+                return "finished"
             console.print(f"[dim red]Submit attempt failed: {str(e).splitlines()[0]}[/dim red]")
             return "error"
 

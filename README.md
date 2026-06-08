@@ -1,52 +1,77 @@
-# Google Forms Master Automator v2.0
+# 🤖 Python Bots: The Ultimate Automation Suite
 
-A professional-grade Selenium-based automator for Google Forms. Supports all field types and features an interactive configuration builder with automated field discovery.
+A collection of high-performance, beautiful, and autonomous Python scripts for everyday automation. Every script is a self-contained "one-filer" powered by `uv` for instant execution.
 
-## Features
-- **Field Discovery:** Automatically scans the form to find questions and their internal `aria-labelledby` IDs.
-- **Full Input Support:**
-  - Short Answer & Paragraph (with Faker data support)
-  - Multiple Choice & Checkboxes
-  - Dropdowns (Listboxes)
-  - Linear Scales (1-10)
-  - Grids (Multiple Choice Grid & Checkbox Grid)
-  - Date & Time
-  - File Upload (via Google Drive picker)
-- **Persistence:** Saves configurations to `form_config.json` for repeated use.
-- **Stealth:** Uses advanced Selenium options to minimize bot detection.
+---
 
-## Prerequisites
-- Python 3.8+
-- Google Chrome installed
-- Chrome Driver (handled automatically by modern Selenium/webdriver-manager)
+## 🚀 Featured Scripts
 
-## Installation
-```bash
-pip install selenium faker questionary rich
-```
+### 1. 📧 Bulk Mailer Pro
+A sophisticated, personalized email automator with a professional CLI.
+- **File:** `bulk_mail.py`
+- **Features:** 
+  - Rich CLI with progress bars and status updates.
+  - CSV data embedded directly in the script.
+  - Secure credential management via `.env` or constants.
+- **Run:** `uv run bulk_mail.py`
+- **Visuals:**
+  ![Bulk Mailer Demo](assets/bulk_mail_demo.png)
 
-## Usage
-1. **Interactive Mode:**
-   Run the script using `uv` to handle dependencies automatically.
+### 2. 📝 Google Forms Master
+An autonomous live-filling mode automator. No hardcoded IDs—it uses heuristics to fill any form.
+- **File:** `automate_google_forms.py`
+- **Features:** 
+  - Real-time DOM scanning.
+  - Intelligent field type detection.
+  - Interactive CLI for custom overrides.
+- **Run:** `uv run automate_google_forms.py`
+- **Visuals:**
+  ![Google Forms Demo](assets/forms_demo.png)
+
+### 3. 💬 WhatsApp Master
+A Selenium-based powerhouse for WhatsApp Web automation.
+- **File:** `whatsapp_master.py`
+- **Features:** 
+  - Contact/Group search.
+  - Media and document attachment support.
+  - Interactive selection.
+- **Run:** `uv run whatsapp_master.py`
+- **Visuals:**
+  ![WhatsApp Master Demo](assets/whatsapp_demo.png)
+
+### 4. 📄 Documentor Bot
+Your AI-powered assistant for documenting codebases.
+- **File:** `documentor_bot.py`
+- **Features:** 
+  - Powered by Gemini 2.0 Flash.
+  - Auto-formats and documents Python files.
+- **Run:** `uv run documentor_bot.py`
+
+---
+
+## 🛠️ How to Add Assets (Images/Videos)
+
+To show off your scripts beautifully:
+1. Create an `assets/` folder in the root directory.
+2. Place your screenshots (`.png`, `.jpg`) or demos there.
+3. Reference them in this README using `![Alt Text](assets/filename.png)`.
+4. **Pro Tip:** For videos, GitHub supports embedding MP4s or GIFs directly in the README!
+
+---
+
+## ⚙️ Global Setup
+
+1. **Install `uv`:** The fastest way to run these scripts.
    ```bash
-   uv run automate_google_forms.py
+   curl -LsSf https://astral.sh/uv/install.sh | sh
    ```
-   Follow the prompts to scan a form and build a configuration.
+2. **Configure Credentials:** Create a `.env` file in the root:
+   ```env
+   MY_EMAIL=your_email@gmail.com
+   MY_PASSWORD=your_app_password
+   GEMINI_API_KEY=your_key
+   ```
 
-## Advanced Randomization
-- **Dates:** Use `random_range` in your config to automatically select a date between **T-2** and **T+2** (±2 days from today).
-- **Time:** Use `random` to generate a random `HH:MM` timestamp for every submission.
-- **Auto-Generate:** The fastest way to start—scans the form and uses heuristics to fill everything instantly.
+---
 
-## Configuration (JSON)
-The `form_config.json` structure:
-- `url`: The form URL.
-- `loop`: Number of submissions.
-- `fields`: Array of field objects.
-  - `type`: text, radio, checkbox, dropdown, scale, grid, date, time.
-  - `id`: The internal `aria-labelledby` ID (e.g., `i1`).
-  - `option`/`options`: The text of the option(s) to select.
-
-## Troubleshooting
-- **Sign-in Required:** If a form requires Google Sign-in, you must manually sign in once in the browser window opened by the script (the script waits 15s by default) or use a profile.
-- **Dynamic IDs:** While IDs like `i1` are usually stable for a specific form version, if the form is edited, you may need to re-run the "Scan" feature.
+*Built with ❤️ by Mohammed Hammaad Mateen. Alhamdulillah.*
