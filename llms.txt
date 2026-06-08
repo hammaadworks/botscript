@@ -1,44 +1,40 @@
-# Python Bots: The Ultimate Automation Suite
+# BotScript: The Automation Legacy of @hammaadworks
 
-A collection of high-performance, autonomous, and self-contained Python scripts for professional automation. Maintained by Mohammed Hammaad Mateen.
+A curated collection of high-performance, autonomous Python scripts for professional automation. Maintained by Mohammed Hammaad Mateen (@hammaadworks).
 
 ## 🚀 Core Philosophy
-Every script in this repository is designed as a **"one-filer"**. This means:
-- No complex installation.
-- Dependencies are declared inline using `uv` script metadata.
-- Execution is a single command: `uv run <script_name>.py`.
+Every script in this repository is a **"one-filer"**, designed for instant execution with `uv`.
 
-## 🤖 Featured Automation Bots
+## 🤖 The Elite Six
 
 ### 📧 Bulk Mailer Pro (`bulk_mail.py`)
-- **Capability**: Sends personalized emails using CSV data.
-- **Tech**: `smtplib`, `rich` (for CLI), `python-dotenv`.
-- **Highlights**: Beautiful progress bars, SMTP error diagnosis, and secure credential handling.
+- **Capability**: Professional email sender with progress tracking and SMTP security.
+- **Visuals**: [demo.mp4](assets/bulk_mail/demo.mp4) | [proof.png](assets/bulk_mail/proof.png)
 
 ### 📝 Google Forms Master (`automate_google_forms.py`)
-- **Capability**: Autonomous live-filling of Google Forms.
-- **Tech**: `selenium`, `faker`.
-- **Highlights**: Uses heuristics to find and fill fields based on labels; no hardcoded element IDs required.
+- **Capability**: Autonomous form filler with heuristic DOM scanning.
+- **Visuals**: [demo.mov](assets/google_forms/demo.mov)
 
 ### 💬 WhatsApp Master (`automate_whatsapp.py`)
-- **Capability**: Automates WhatsApp Web messaging.
-- **Tech**: `selenium`.
-- **Highlights**: Interactive contact selection, supports sending text, documents, and media.
+- **Capability**: Selenium powerhouse for WhatsApp Web messaging.
 
-### 📄 Documentor Bot (`automate_code_documentation.py`)
-- **Capability**: AI-powered code documentation.
-- **Tech**: `google-generativeai` (Gemini 2.0 Flash).
-- **Highlights**: Automatically generates Google-style docstrings and formats Python files.
+### 📄 AI Documentor (`automate_code_documentation.py`)
+- **Capability**: Gemini 2.0 Flash assistant for auto-documenting entire codebases.
 
 ### 🎮 Ztype Game Bot (`automate_ztype.py`)
-- **Capability**: Automated gameplay for Ztype.
-- **Tech**: `EasyOCR`, `PyAutoGUI`.
-- **Highlights**: Real-time screen OCR to detect words and automated typing for high-score performance.
+- **Capability**: Real-time OCR and Computer Vision bot for Ztype domination.
 
-## 🛠 Setup
-1. Install `uv`: `curl -LsSf https://astral.sh/uv/install.sh | sh`
-2. Run any script: `uv run <script_name>.py`
+### 📺 Wgetube Pro (`mytube/`)
+- **Capability**: Advanced Terminal hub for downloading, clipping, and looping YouTube media.
 
-## 🔗 Links
-- **GitHub Repository**: [https://github.com/MohammedHMateen/python-bots](https://github.com/MohammedHMateen/python-bots)
-- **Visual Catalog**: [https://mohammedhmateen.github.io/python-bots/](https://mohammedhmateen.github.io/python-bots/)
+## 🤝 Connect with @hammaadworks
+Explore more projects and professional opportunities:
+- **X (Twitter)**: [https://x.com/hammaadworks](https://x.com/hammaadworks)
+- **GitHub**: [https://github.com/hammaadworks](https://github.com/hammaadworks)
+- **LinkedIn**: [https://linkedin.com/in/hammaadworks](https://linkedin.com/in/hammaadworks)
+- **ProductHunt**: [https://www.producthunt.com/@hammaadworks](https://www.producthunt.com/@hammaadworks)
+- **Website**: [https://www.hammaadworks.com](https://www.hammaadworks.com) (Coming soon!)
+- **Email**: hammaadworks@gmail.com
+
+---
+*Built with ❤️ by hammaadworks. Alhamdulillah.*

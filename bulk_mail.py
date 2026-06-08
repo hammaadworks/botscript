@@ -34,15 +34,9 @@ custom_theme = Theme(
 
 console = Console(theme=custom_theme)
 
-# Try to load environment variables from .env if available
-try:
-    from dotenv import load_dotenv
-
-    load_dotenv()
-except ImportError:
-    pass
-
 # --- CONFIGURATION ---
+# get your app password from
+# https://myaccount.google.com/apppasswords
 SENDER_EMAIL = "myfriendhammad@gmail.com"
 SENDER_APP_PASSWORD = ""
 

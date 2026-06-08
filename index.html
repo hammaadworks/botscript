@@ -3,239 +3,278 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python Bots & Scripts | Mohammed Hammaad Mateen</title>
-    <meta name="description" content="A premium collection of high-performance, autonomous Python scripts for automation, media management, and productivity. Built by Mohammed Hammaad Mateen.">
+    <title>BotScript | Premium Automations by @hammaadworks</title>
+    <meta name="description" content="BotScript: A curated collection of high-performance, autonomous Python scripts for web automation, media, and productivity. Built by hammaadworks.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); }
-        .card-hover:hover { transform: translateY(-4px); transition: all 0.3s ease; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
+        .card-hover:hover { transform: translateY(-6px); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .hero-gradient { background: radial-gradient(circle at top right, #e0e7ff 0%, #ffffff 50%, #f8fafc 100%); }
+        .video-overlay { background: linear-gradient(to top, rgba(2, 6, 23, 0.8) 0%, transparent 60%); }
     </style>
-    <!-- Structured Data (SEO) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareSourceCode",
-      "name": "Python Bots & Scripts Collection",
-      "description": "A collection of self-contained Python scripts for high-performance automation.",
-      "author": {
-        "@type": "Person",
-        "name": "Mohammed Hammaad Mateen"
-      },
-      "codeRepository": "https://github.com/MohammedHMateen/python-bots",
-      "runtimePlatform": "Python 3.12+",
-      "programmingLanguage": "Python"
-    }
-    </script>
 </head>
-<body class="bg-slate-50 text-slate-900 antialiased">
+<body class="bg-[#fafafa] text-slate-900 antialiased">
 
     <!-- Navbar -->
-    <nav class="sticky top-0 z-50 glass border-b border-slate-200">
+    <nav class="sticky top-0 z-50 glass border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
-                <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold">P</div>
-                    <span class="font-bold text-lg tracking-tight">PythonBots</span>
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 bg-slate-900 rounded-xl flex items-center justify-center text-white font-black text-xl italic">B</div>
+                    <span class="font-extrabold text-xl tracking-tighter">BotScript</span>
                 </div>
-                <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
-                    <a href="#catalog" class="hover:text-indigo-600 transition-colors">Catalog</a>
-                    <a href="#setup" class="hover:text-indigo-600 transition-colors">Setup</a>
-                    <a href="https://github.com/MohammedHMateen/python-bots" target="_blank" class="px-4 py-2 bg-slate-900 text-white rounded-full hover:bg-slate-800 transition-all">GitHub</a>
+                <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-500">
+                    <a href="#catalog" class="hover:text-slate-900 transition-colors">Catalog</a>
+                    <a href="https://github.com/hammaadworks" target="_blank" class="hover:text-slate-900 transition-colors">@hammaadworks</a>
+                    <a href="https://github.com/hammaadworks/python-bots" target="_blank" class="px-5 py-2.5 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-all shadow-sm">Get Source</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <header class="relative overflow-hidden bg-white pt-16 pb-24 lg:pt-32 lg:pb-40 border-b border-slate-100">
+    <!-- Hero Section -->
+    <header class="relative overflow-hidden hero-gradient pt-24 pb-32 lg:pt-40 lg:pb-48">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight text-slate-900 mb-6">
-                The Ultimate <span class="text-indigo-600">Automation Suite</span>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-600 text-xs font-bold mb-8 uppercase tracking-widest">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+                </span>
+                The hammaadworks Collection
+            </div>
+            <h1 class="text-6xl lg:text-8xl font-extrabold tracking-tight text-slate-955 mb-8 leading-[0.9]">
+                Automation is <br><span class="text-indigo-600 italic">my craft.</span>
             </h1>
-            <p class="text-xl text-slate-600 max-w-2xl mx-auto mb-10 leading-relaxed">
-                A premium collection of autonomous "one-filer" Python scripts. High-performance, visually polished, and powered by <span class="font-bold text-slate-800">uv</span>.
+            <p class="text-xl text-slate-500 max-w-2xl mx-auto mb-12 leading-relaxed font-medium">
+                I am <span class="text-slate-900 font-bold">@hammaadworks</span>. Over the years, I've built dozens of automations to solve real-world problems. **BotScript** is my curated collection of the absolute best.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#catalog" class="px-8 py-4 bg-indigo-600 text-white rounded-xl font-bold shadow-lg shadow-indigo-200 hover:bg-indigo-700 hover:-translate-y-0.5 transition-all">
-                    Explore Scripts
+            <div class="flex flex-col sm:flex-row gap-5 justify-center">
+                <a href="#catalog" class="px-10 py-5 bg-slate-900 text-white rounded-2xl font-bold shadow-2xl shadow-slate-200 hover:scale-[1.02] transition-all">
+                    Explore My Collection
                 </a>
-                <a href="llms.txt" class="px-8 py-4 bg-white border border-slate-200 text-slate-700 rounded-xl font-bold hover:bg-slate-50 hover:border-slate-300 transition-all">
-                    View AI Context
+                <a href="https://github.com/hammaadworks" target="_blank" class="px-10 py-5 bg-white border border-slate-200 text-slate-900 rounded-2xl font-bold hover:bg-slate-50 transition-all">
+                    Hire Me / Collaborate
                 </a>
             </div>
-        </div>
-        <!-- Decorative bg -->
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-10">
-            <div class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-400 rounded-full blur-3xl"></div>
-            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-400 rounded-full blur-3xl"></div>
         </div>
     </header>
 
     <!-- Catalog Section -->
-    <section id="catalog" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl font-bold mb-4">Script Catalog</h2>
-            <div class="relative max-w-lg mx-auto">
-                <input type="text" id="searchInput" placeholder="Search by name, tag, or feature..." 
-                    class="w-full px-6 py-4 rounded-2xl border border-slate-200 focus:ring-4 focus:ring-indigo-100 focus:border-indigo-500 outline-none transition-all shadow-sm">
+    <section id="catalog" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+            <div class="max-w-xl">
+                <h2 class="text-4xl font-black mb-4 tracking-tight">The Elite Six</h2>
+                <p class="text-slate-500 font-medium">My most useful, high-performance scripts. All standardized as "one-filers" for instant utility.</p>
+            </div>
+            <div class="relative w-full md:w-80">
+                <input type="text" id="searchInput" placeholder="Search scripts..." 
+                    class="w-full px-6 py-4 rounded-2xl border border-slate-200 focus:ring-4 focus:ring-indigo-100 focus:border-indigo-500 outline-none transition-all shadow-sm font-medium">
             </div>
         </div>
 
-        <div id="scriptGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div id="scriptGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             
-            <!-- Bulk Mailer Pro -->
-            <div class="script-card group bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden card-hover" data-tags="email bulk mail automation csv rich video">
-                <div class="aspect-video bg-slate-100 relative overflow-hidden">
-                    <video src="assets/bulk_malier.mp4" autoplay muted loop playsinline class="object-cover w-full h-full opacity-90 group-hover:scale-105 transition-transform"></video>
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
-                    <div class="absolute bottom-4 left-4">
-                        <span class="px-3 py-1 bg-indigo-600 text-white text-xs font-bold rounded-full uppercase">One-Filer</span>
+            <!-- 1. Bulk Mailer Pro -->
+            <div class="script-card group bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden card-hover" data-tags="email bulk mail automation rich video">
+                <div class="aspect-[9/16] bg-slate-100 relative overflow-hidden group/video">
+                    <video id="vid-1" src="assets/bulk_mail/demo.mp4" autoplay muted loop playsinline class="object-cover w-full h-full"></video>
+                    <div class="absolute inset-0 video-overlay flex items-center justify-center opacity-0 group-hover/video:opacity-100 transition-opacity">
+                        <button onclick="openFullscreen('vid-1')" class="p-4 bg-white/20 backdrop-blur-xl rounded-full text-white hover:bg-white/40 transition-all shadow-2xl">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="absolute bottom-6 left-6">
+                        <span class="px-3 py-1 bg-indigo-600 text-white text-[10px] font-black rounded-full uppercase tracking-tighter">Verified</span>
                     </div>
                 </div>
                 <div class="p-8">
-                    <h3 class="text-xl font-bold mb-3">Bulk Mailer Pro</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-6">Personalized email automator with a high-fidelity Rich CLI. Perfect for newsletters via SMTP.</p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded uppercase tracking-wider">Rich CLI</span>
-                        <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded uppercase tracking-wider">CSV</span>
-                        <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded uppercase tracking-wider">UV</span>
+                    <h3 class="text-2xl font-black mb-3 italic">Bulk Mailer Pro</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-4 font-medium">High-fidelity email sender with progress tracking and SMTP security. Designed for @hammaadworks' outreach.</p>
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded uppercase tracking-wider">Marketing</span>
+                        <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded uppercase tracking-wider">Outreach</span>
                     </div>
-                    <a href="https://github.com/MohammedHMateen/python-bots/blob/main/bulk_mail.py" class="text-indigo-600 font-bold text-sm hover:underline">View Source &rarr;</a>
+                    <a href="https://github.com/hammaadworks/python-bots/blob/main/bulk_mail.py" target="_blank" class="inline-flex items-center text-slate-900 font-bold text-sm group-hover:gap-3 transition-all">
+                        View Source on GitHub <span class="ml-2">&rarr;</span>
+                    </a>
                 </div>
             </div>
 
-            <!-- Google Forms Master -->
-            <div class="script-card group bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden card-hover" data-tags="google forms automation selenium faker">
-                <div class="aspect-video bg-slate-100 relative overflow-hidden">
-                    <img src="assets/forms_demo.png" alt="Google Forms Demo" class="object-cover w-full h-full opacity-90 group-hover:scale-105 transition-transform">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
-                    <div class="absolute bottom-4 left-4">
-                        <span class="px-3 py-1 bg-indigo-600 text-white text-xs font-bold rounded-full uppercase">Autonomous</span>
+            <!-- 2. Google Forms Master -->
+            <div class="script-card group bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden card-hover" data-tags="google forms automation faker video data testing">
+                <div class="aspect-[9/16] bg-slate-100 relative overflow-hidden group/video">
+                    <video id="vid-2" src="assets/google_forms/demo.mov" autoplay muted loop playsinline class="object-cover w-full h-full"></video>
+                    <div class="absolute inset-0 video-overlay flex items-center justify-center opacity-0 group-hover/video:opacity-100 transition-opacity">
+                        <button onclick="openFullscreen('vid-2')" class="p-4 bg-white/20 backdrop-blur-xl rounded-full text-white hover:bg-white/40 transition-all shadow-2xl">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="absolute bottom-6 left-6">
+                        <span class="px-3 py-1 bg-indigo-600 text-white text-[10px] font-black rounded-full uppercase tracking-tighter">Autonomous</span>
                     </div>
                 </div>
                 <div class="p-8">
-                    <h3 class="text-xl font-bold mb-3">Google Forms Master</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-6">Universal form filler using live DOM scanning. No hardcoded IDs, completely heuristic-driven.</p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded uppercase tracking-wider">Selenium</span>
-                        <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded uppercase tracking-wider">Faker</span>
+                    <h3 class="text-2xl font-black mb-3 italic">G-Forms Master</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-4 font-medium">Autonomous filler with heuristic DOM scanning. Fills any form instantly without hardcoded IDs.</p>
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded uppercase tracking-wider">Data Entry</span>
+                        <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded uppercase tracking-wider">Testing</span>
                     </div>
-                    <a href="https://github.com/MohammedHMateen/python-bots/blob/main/automate_google_forms.py" class="text-indigo-600 font-bold text-sm hover:underline">View Source &rarr;</a>
+                    <a href="https://github.com/hammaadworks/python-bots/blob/main/automate_google_forms.py" target="_blank" class="inline-flex items-center text-slate-900 font-bold text-sm group-hover:gap-3 transition-all">
+                        View Source on GitHub <span class="ml-2">&rarr;</span>
+                    </a>
                 </div>
             </div>
 
-            <!-- WhatsApp Master -->
-            <div class="script-card group bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden card-hover" data-tags="whatsapp automation selenium media">
-                <div class="aspect-video bg-slate-100 relative overflow-hidden">
-                    <img src="assets/whatsapp_demo.png" alt="WhatsApp Demo" class="object-cover w-full h-full opacity-90 group-hover:scale-105 transition-transform">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
-                    <div class="absolute bottom-4 left-4">
-                        <span class="px-3 py-1 bg-indigo-600 text-white text-xs font-bold rounded-full uppercase">Media Support</span>
+            <!-- 3. WhatsApp Master -->
+            <div class="script-card group bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden card-hover" data-tags="whatsapp automation selenium support">
+                <div class="aspect-[9/16] bg-green-600 relative overflow-hidden flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-white opacity-20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.76.46 3.42 1.25 4.88L2 22l5.13-1.25c1.46.79 3.12 1.25 4.87 1.25 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-6 left-6">
+                        <span class="px-3 py-1 bg-indigo-600 text-white text-[10px] font-black rounded-full uppercase tracking-tighter">Communication</span>
                     </div>
                 </div>
                 <div class="p-8">
-                    <h3 class="text-xl font-bold mb-3">WhatsApp Master</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-6">Advanced WhatsApp Web automation. Send text, media, and documents via an interactive CLI.</p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded uppercase tracking-wider">Selenium</span>
-                        <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded uppercase tracking-wider">Automation</span>
+                    <h3 class="text-2xl font-black mb-3 italic">WhatsApp Master</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-4 font-medium">Sophisticated Selenium tool for WhatsApp Web. Search, select, and send media/text at scale.</p>
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded uppercase tracking-wider">Support</span>
+                        <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded uppercase tracking-wider">Bulk Messaging</span>
                     </div>
-                    <a href="https://github.com/MohammedHMateen/python-bots/blob/main/automate_whatsapp.py" class="text-indigo-600 font-bold text-sm hover:underline">View Source &rarr;</a>
+                    <a href="https://github.com/hammaadworks/python-bots/blob/main/automate_whatsapp.py" target="_blank" class="inline-flex items-center text-slate-900 font-bold text-sm group-hover:gap-3 transition-all">
+                        View Source on GitHub <span class="ml-2">&rarr;</span>
+                    </a>
                 </div>
             </div>
 
-            <!-- AI Documentor -->
-            <div class="script-card group bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden card-hover" data-tags="ai gemini documentation clean code">
-                <div class="p-8">
-                    <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                        </svg>
+            <!-- 4. AI Documentor -->
+            <div class="script-card group bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden card-hover" data-tags="ai gemini documentation precommit hook">
+                <div class="aspect-[9/16] bg-indigo-900 relative overflow-hidden flex items-center justify-center">
+                    <div class="text-indigo-400 font-mono text-xs opacity-40">GEMINI_2.0_FLASH</div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-6 left-6">
+                        <span class="px-3 py-1 bg-indigo-600 text-white text-[10px] font-black rounded-full uppercase tracking-tighter">AI-Powered</span>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">AI Documentor</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-6">Powered by Gemini 2.0. Automatically generates professional Google-style docstrings and formats code.</p>
-                    <a href="https://github.com/MohammedHMateen/python-bots/blob/main/automate_code_documentation.py" class="text-indigo-600 font-bold text-sm hover:underline">View Source &rarr;</a>
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-black mb-3 italic">AI Documentor</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-4 font-medium">Automate your codebase documentation using Gemini 2.0. Accepts files/folders. Excellent as a Pre-Commit Hook.</p>
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded uppercase tracking-wider">Pre-Commit Hook</span>
+                        <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded uppercase tracking-wider">Code Quality</span>
+                    </div>
+                    <a href="https://github.com/hammaadworks/python-bots/blob/main/automate_code_documentation.py" target="_blank" class="inline-flex items-center text-slate-900 font-bold text-sm group-hover:gap-3 transition-all">
+                        View Source on GitHub <span class="ml-2">&rarr;</span>
+                    </a>
                 </div>
             </div>
 
-            <!-- Ztype Bot -->
-            <div class="script-card group bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden card-hover" data-tags="game bot ocr ztype cv">
-                <div class="p-8">
-                    <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-amber-600 group-hover:text-white transition-all">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a2 2 0 11-4 0V4zM18 8a2 2 0 114 0v1a2 2 0 11-4 0V8z" />
-                        </svg>
+            <!-- 5. Ztype Game Bot -->
+            <div class="script-card group bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden card-hover" data-tags="game bot ocr cv vision">
+                <div class="aspect-[9/16] bg-amber-500 relative overflow-hidden flex items-center justify-center">
+                    <div class="text-white font-black text-4xl italic tracking-tighter opacity-20">Z-TYPE</div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-6 left-6">
+                        <span class="px-3 py-1 bg-indigo-600 text-white text-[10px] font-black rounded-full uppercase tracking-tighter">CV / OCR</span>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Ztype Game Bot</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-6">Play Ztype automatically with Computer Vision. Uses EasyOCR for real-time word detection and typing.</p>
-                    <a href="https://github.com/MohammedHMateen/python-bots/blob/main/automate_ztype.py" class="text-indigo-600 font-bold text-sm hover:underline">View Source &rarr;</a>
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-black mb-3 italic">Ztype Game Bot</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-4 font-medium">Real-time Computer Vision and OCR bot to dominate the Ztype typing game. Blazing fast accuracy.</p>
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded uppercase tracking-wider">Computer Vision</span>
+                        <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded uppercase tracking-wider">Testing</span>
+                    </div>
+                    <a href="https://github.com/hammaadworks/python-bots/blob/main/automate_ztype.py" target="_blank" class="inline-flex items-center text-slate-900 font-bold text-sm group-hover:gap-3 transition-all">
+                        View Source on GitHub <span class="ml-2">&rarr;</span>
+                    </a>
                 </div>
             </div>
 
-            <!-- Wgetube Pro -->
-            <div class="script-card group bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden card-hover" data-tags="youtube media downloader tui tdlp">
-                <div class="aspect-video bg-indigo-900 relative overflow-hidden flex items-center justify-center">
-                    <div class="text-center">
-                        <div class="text-indigo-400 text-xs font-mono mb-2">// Wgetube TUI</div>
-                        <div class="w-16 h-1 bg-indigo-500 rounded-full mx-auto"></div>
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
-                    <div class="absolute bottom-4 left-4">
-                        <span class="px-3 py-1 bg-red-600 text-white text-xs font-bold rounded-full uppercase">Pro Suite</span>
+            <!-- 6. Wgetube Pro -->
+            <div class="script-card group bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden card-hover" data-tags="youtube media tui content learning">
+                <div class="aspect-[9/16] bg-slate-950 relative overflow-hidden flex items-center justify-center">
+                    <div class="text-indigo-600 font-mono text-[10px] group-hover:scale-110 transition-transform tracking-widest uppercase">Initializing TUI...</div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-6 left-6">
+                        <span class="px-3 py-1 bg-indigo-600 text-white text-[10px] font-black rounded-full uppercase tracking-tighter">Suite</span>
                     </div>
                 </div>
                 <div class="p-8">
-                    <h3 class="text-xl font-bold mb-3">Wgetube Pro</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-6">A high-performance media hub with a Terminal UI. Download, loop, and clip media with precision.</p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded uppercase tracking-wider">TUI</span>
-                        <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded uppercase tracking-wider">Clipping</span>
+                    <h3 class="text-2xl font-black mb-3 italic">Wgetube Pro</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-4 font-medium">My most advanced media project. A Terminal hub for downloading, clipping, and looping media.</p>
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded uppercase tracking-wider">Content Creation</span>
+                        <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded uppercase tracking-wider">Learning</span>
                     </div>
-                    <a href="https://github.com/MohammedHMateen/python-bots/tree/main/mytube" class="text-indigo-600 font-bold text-sm hover:underline">View Project &rarr;</a>
+                    <a href="https://github.com/hammaadworks/python-bots/tree/main/mytube" target="_blank" class="inline-flex items-center text-slate-900 font-bold text-sm group-hover:gap-3 transition-all">
+                        View Repository <span class="ml-2">&rarr;</span>
+                    </a>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <!-- Setup Section -->
-    <section id="setup" class="bg-slate-900 py-24 text-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center">Lightning-Fast Setup</h2>
-            <div class="space-y-8">
-                <div class="flex gap-6">
-                    <div class="w-10 h-10 bg-indigo-600 rounded-full flex-shrink-0 flex items-center justify-center font-bold">1</div>
-                    <div>
-                        <h4 class="text-lg font-bold mb-2">Install UV</h4>
-                        <p class="text-slate-400 mb-4 text-sm">The fastest way to run any script without managing environments manually.</p>
-                        <code class="block bg-slate-800 p-4 rounded-xl border border-slate-700 text-xs">curl -LsSf https://astral.sh/uv/install.sh | sh</code>
-                    </div>
-                </div>
-                <div class="flex gap-6">
-                    <div class="w-10 h-10 bg-indigo-600 rounded-full flex-shrink-0 flex items-center justify-center font-bold">2</div>
-                    <div>
-                        <h4 class="text-lg font-bold mb-2">Run Any Script</h4>
-                        <p class="text-slate-400 mb-4 text-sm">UV will automatically handle all dependencies declared in the "one-filer" metadata.</p>
-                        <code class="block bg-slate-800 p-4 rounded-xl border border-slate-700 text-xs">uv run bulk_mail.py</code>
-                    </div>
-                </div>
+    <!-- Footer / CTA -->
+    <footer class="bg-white border-t border-slate-100 py-32 text-center">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-5xl font-black tracking-tight mb-8 leading-tight">Like what you see? <br>Let's talk about <span class="text-indigo-600 italic">your</span> next project.</h2>
+            <p class="text-xl text-slate-500 font-medium mb-12">I'm <span class="text-slate-950 font-bold">@hammaadworks</span>, and I specialize in high-impact technical solutions. Reach out to collaborate or hire me.</p>
+            
+            <div class="flex flex-wrap justify-center gap-8 mb-12">
+                <a href="https://x.com/hammaadworks" target="_blank" class="font-bold text-slate-900 hover:text-indigo-600 transition-colors">X (Twitter)</a>
+                <a href="https://github.com/hammaadworks" target="_blank" class="font-bold text-slate-900 hover:text-indigo-600 transition-colors">GitHub</a>
+                <a href="https://linkedin.com/in/hammaadworks" target="_blank" class="font-bold text-slate-900 hover:text-indigo-600 transition-colors">LinkedIn</a>
+                <a href="https://www.producthunt.com/@hammaadworks" target="_blank" class="font-bold text-slate-900 hover:text-indigo-600 transition-colors">ProductHunt</a>
             </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="bg-white border-t border-slate-200 pt-16 pb-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p class="text-slate-400 text-sm">Maintained with dedication by Mohammed Hammaad Mateen. Alhamdulillah.</p>
+            <div class="flex flex-wrap justify-center gap-6 text-sm">
+                <span class="text-slate-400 font-bold uppercase tracking-widest italic">hammaadworks@gmail.com</span>
+                <span class="text-slate-300">|</span>
+                <span class="text-slate-400 font-bold uppercase tracking-widest italic">hammaadworks.com (soon)</span>
+            </div>
+            
+            <p class="mt-24 text-slate-300 text-[10px] font-black uppercase tracking-[0.2em] italic">&copy; 2026 BotScript &bull; Built with dedication by hammaadworks. Alhamdulillah.</p>
         </div>
     </footer>
 
-    <!-- Search Logic -->
+    <!-- Scripts -->
     <script>
+        // Fullscreen Logic
+        function openFullscreen(id) {
+            const elem = document.getElementById(id);
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) { /* Safari */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE11 */
+                elem.msRequestFullscreen();
+            }
+            // Enable controls and unmute in fullscreen for better experience
+            elem.controls = true;
+            elem.muted = false;
+            
+            // Revert when exiting fullscreen
+            document.addEventListener('fullscreenchange', () => {
+                if (!document.fullscreenElement) {
+                    elem.controls = false;
+                    elem.muted = true;
+                    elem.play(); // Ensure it keeps playing
+                }
+            });
+        }
+
+        // Search Logic
         const searchInput = document.getElementById('searchInput');
         const cards = document.querySelectorAll('.script-card');
 

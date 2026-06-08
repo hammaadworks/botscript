@@ -1,80 +1,66 @@
-# 🤖 Python Bots: The Ultimate Automation Suite
+# 🤖 BotScript: The Automation Legacy of [@hammaadworks](https://github.com/hammaadworks)
 
-A collection of high-performance, beautiful, and autonomous Python scripts for everyday automation. Every script is a self-contained "one-filer" powered by `uv` for instant execution.
+Welcome to **BotScript**, a premium collection of the most useful, high-performance automations I've built over the years. This isn't just a repo; it's a showcase of how I turn complex workflows into elegant, "one-filer" solutions.
+
+I am **Mohammed Hammaad Mateen**, known across the web as **hammaadworks**. I build tools that save time, solve problems, and look beautiful while doing it.
 
 ---
 
-## 🚀 Featured Scripts
+## 🚀 The Elite Six
+Every script here is a self-contained powerhouse, designed for instant execution with `uv`.
 
 ### 1. 📧 Bulk Mailer Pro
-A sophisticated, personalized email automator with a professional CLI.
+**Use Case:** `Marketing` `Outreach` `Newsletters`
+A professional-grade email automator with a high-fidelity Rich CLI and secure SMTP handling.
 - **File:** `bulk_mail.py`
-- **Features:** 
-  - Rich CLI with progress bars and status updates.
-  - CSV data embedded directly in the script.
-  - Secure credential management via `.env` or constants.
-- **Run:** `uv run bulk_mail.py`
-- **Visuals:**
-  ![Bulk Mailer Demo](assets/bulk_mail_demo.png)
-  
-  > **Demo Video:**
-  > https://github.com/MohammedHMateen/python-bots/raw/main/assets/bulk_malier.mp4
+- **Asset:** <br>
+  <img src="assets/bulk_mail/proof.png" width="250" alt="Proof"> <br>
+  [🎬 Watch Demo Video](https://github.com/hammaadworks/python-bots/raw/main/assets/bulk_mail/demo.mp4)
 
 ### 2. 📝 Google Forms Master
-An autonomous live-filling mode automator. No hardcoded IDs—it uses heuristics to fill any form.
+**Use Case:** `Data Entry` `Testing` `Survey Automation`
+An autonomous, heuristic-driven form filler that scans the DOM and uses Faker to submit data instantly.
 - **File:** `automate_google_forms.py`
-- **Features:** 
-  - Real-time DOM scanning.
-  - Intelligent field type detection.
-  - Interactive CLI for custom overrides.
-- **Run:** `uv run automate_google_forms.py`
-- **Visuals:**
-  ![Google Forms Demo](assets/forms_demo.png)
+- **Asset:** <br>
+  [🎬 Watch Demo Video](https://github.com/hammaadworks/python-bots/raw/main/assets/google_forms/demo.mov)
 
 ### 3. 💬 WhatsApp Master
-A Selenium-based powerhouse for WhatsApp Web automation.
+**Use Case:** `Customer Support` `Bulk Messaging`
+A Selenium-based powerhouse for automating WhatsApp Web messaging, including media and documents.
 - **File:** `automate_whatsapp.py`
-- **Features:** 
-  - Contact/Group search.
-  - Media and document attachment support.
-  - Interactive selection.
-- **Run:** `uv run automate_whatsapp.py`
-- **Visuals:**
-  ![WhatsApp Master Demo](assets/whatsapp_demo.png)
 
-### 4. 📄 Documentor Bot
-Your AI-powered assistant for documenting codebases.
+### 4. 📄 AI Documentor
+**Use Case:** `Pre-commit Hook` `Code Quality` `Refactoring`
+Your AI assistant powered by Gemini 2.0 Flash, designed to auto-document and format entire codebases. Accepts individual files or entire folders.
 - **File:** `automate_code_documentation.py`
-- **Features:** 
-  - Powered by Gemini 2.0 Flash.
-  - Auto-formats and documents Python files.
-- **Run:** `uv run automate_code_documentation.py`
+
+### 5. 🎮 Ztype Game Bot
+**Use Case:** `Computer Vision` `OCR Testing` `Botting`
+A high-score machine that uses real-time OCR and Computer Vision to dominate the Ztype typing game.
+- **File:** `automate_ztype.py`
+
+### 6. 📺 Wgetube Pro (YouTube)
+**Use Case:** `Content Creation` `Rote Learning` `Archiving`
+A full-stack media hub with a Terminal UI for downloading, looping, and clipping YouTube content.
+- **Location:** `mytube/`
 
 ---
 
-## 🛠️ How to Add Assets (Images/Videos)
+## 🤝 Connect with [@hammaadworks](https://github.com/hammaadworks)
 
-To show off your scripts beautifully:
-1. Create an `assets/` folder in the root directory.
-2. Place your screenshots (`.png`, `.jpg`) or demos there.
-3. Reference them in this README using `![Alt Text](assets/filename.png)`.
-4. **Pro Tip:** For videos, GitHub supports embedding MP4s or GIFs directly in the README!
+I'm always looking for new challenges and professional opportunities. If you like what you see here, let's build something incredible together.
 
----
-
-## ⚙️ Global Setup
-
-1. **Install `uv`:** The fastest way to run these scripts.
-   ```bash
-   curl -LsSf https://astral.sh/uv/install.sh | sh
-   ```
-2. **Configure Credentials:** Create a `.env` file in the root:
-   ```env
-   MY_EMAIL=your_email@gmail.com
-   MY_PASSWORD=your_app_password
-   GEMINI_API_KEY=your_key
-   ```
+- **GitHub:** [https://github.com/hammaadworks](https://github.com/hammaadworks)
+- **X (Twitter):** [https://x.com/hammaadworks](https://x.com/hammaadworks)
+- **LinkedIn:** [https://linkedin.com/in/hammaadworks](https://linkedin.com/in/hammaadworks)
+- **ProductHunt:** [https://www.producthunt.com/@hammaadworks](https://www.producthunt.com/@hammaadworks)
+- **Email:** hammaadworks@gmail.com
+- **Website:** [hammaadworks.com](https://www.hammaadworks.com) *(coming soon!)*
 
 ---
 
-*Built with ❤️ by Mohammed Hammaad Mateen. Alhamdulillah.*
+## ⚙️ Quick Setup
+1. **Install `uv`:** `curl -LsSf https://astral.sh/uv/install.sh | sh`
+2. **Run Anything:** `uv run <script_name>.py`
+
+*Alhamdulillah. Built for performance, refined for you.*
