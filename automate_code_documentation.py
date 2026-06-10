@@ -1,6 +1,6 @@
 # /// script
 # dependencies = [
-#   "google-generativeai",
+#   "google-genai",
 #   "python-dotenv",
 #   "black",
 #   "isort",
@@ -13,11 +13,10 @@ import time
 import logging
 import subprocess
 import sys
-import google.generativeai as genai
-import grpc
-import atexit
 import fnmatch
 from dotenv import load_dotenv
+from google import genai
+from google.genai import types
 from rich.console import Console
 from rich.panel import Panel
 from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TaskProgressColumn
@@ -48,6 +47,7 @@ logger = logging.getLogger(__name__)
 SUPPORTED_EXTENSIONS = {".py", ".js", ".ts", ".jsx", ".tsx", ".java", ".cpp", ".cs", ".go", ".rs", ".rb", ".php", ".html", ".css"}
 
 def ensure_installed():
+    """Silently ensure formatting tools are installed."""
     for tool in ["black", "isort"]:
         try:
             subprocess.run([tool, "--version"], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
@@ -57,24 +57,14 @@ def ensure_installed():
 
 def configure_ai():
     if not GEMINI_API_KEY:
-        console.print("[error]Error:[/error] GEMINI_API_KEY is not set in your .env file.")
+        console.print("[error]Error:[/error] GEMINI_API_KEY is not set.")
+        console.print("Please create a [info].env[/info] file in this directory and add: [highlight]GEMINI_API_KEY=your_key_here[/highlight]")
         sys.exit(1)
-    genai.configure(api_key=GEMINI_API_KEY)
-    return genai.GenerativeModel(model_name="gemini-2.0-flash-exp")
+    return genai.Client(api_key=GEMINI_API_KEY)
 
-model = configure_ai()
-
-def shutdown_grpc():
-    try:
-        genai.shutdown()
-    except Exception as e:
-        logger.warning(f"Error during gRPC shutdown: {e}")
-
-
-atexit.register(shutdown_grpc)
+client = configure_ai()
 
 def read_gitignore(directory):
-    """Read .gitignore and return a set of ignored files and folders."""
     gitignore_path = os.path.join(directory, ".gitignore")
     ignored = set()
     if os.path.exists(gitignore_path):
@@ -86,7 +76,6 @@ def read_gitignore(directory):
     return ignored
 
 def should_skip(file_path, ignored_patterns):
-    """Check if a file should be skipped based on .gitignore."""
     for pattern in ignored_patterns:
         if fnmatch.fnmatch(file_path, pattern) or fnmatch.fnmatch(os.path.basename(file_path), pattern):
             return True
@@ -109,11 +98,16 @@ def generate_docstring(code, ext):
     retry_delay = 2
     for attempt in range(retries):
         try:
-            response = model.generate_content(
-                prompt, generation_config=genai.GenerationConfig(max_output_tokens=8000, temperature=0.2)
+            response = client.models.generate_content(
+                model='gemini-2.5-flash',
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    max_output_tokens=8000, 
+                    temperature=0.2
+                )
             )
             return response.text.strip()
-        except (grpc.RpcError, Exception) as e:
+        except Exception as e:
             if attempt < retries - 1:
                 time.sleep(retry_delay)
                 retry_delay *= 2
@@ -168,7 +162,7 @@ def process_file(file_path, progress, task_id):
 def main():
     console.print(Panel.fit(
         "[bold highlight]AI Documentor Bot[/bold highlight]\n"
-        "[white]Powered by Gemini 2.0 Flash[/white]",
+        "[white]Powered by Gemini 2.5 Flash[/white]",
         border_style="highlight"
     ))
     
@@ -217,7 +211,7 @@ def main():
             time.sleep(1.5) # Rate limit protection
 
     console.print(Panel(
-        f"[bold success]Alhamdulillah! Documentation Complete.[/bold success]\n"
+        f"[bold success]Code Documentation Complete.[/bold success]\n"
         f"Successfully enhanced [highlight]{success_count}[/highlight] out of [highlight]{len(files_to_process)}[/highlight] files.",
         title="Summary",
         border_style="success"

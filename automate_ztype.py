@@ -1,136 +1,143 @@
 # /// script
+# requires-python = ">=3.12"
 # dependencies = [
 #   "opencv-python",
 #   "easyocr",
 #   "numpy",
-#   "pyautogui",
-#   "pillow",
+#   "selenium",
+#   "rich",
+#   "typer",
 # ]
 # ///
 
 import time
-
 import cv2
 import easyocr
 import numpy as np
-import pyautogui as pag
-from PIL import Image
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import typer
+from rich.console import Console
+from rich.panel import Panel
 
-import os
-import tempfile
+app = typer.Typer(help="Z-Type Game Bot: Dominate the game with Computer Vision and OCR.")
+console = Console()
 
-IMAGE_PATH = os.path.join(tempfile.gettempdir(), "ztype.jpg")
-"""str: The path to the image file used for OCR."""
-
-skip_words = ['ztype', 'new game', 'settings', 'my stats',
+SKIP_WORDS = ['ztype', 'new game', 'settings', 'my stats',
               'phoboslab', 'load your own text', 'wave', 'score']
-"""list[str]: A list of words to skip during OCR processing."""
-
-PREV_RESULT = list()
-"""list[str]: A list to store the previous OCR result."""
-
-RESIZE_RATIO = (500, 800)
-"""tuple[int, int]: The desired width and height for resizing the image."""
-PAUSE_BUTTON = (375, 405)
-"""tuple[int, int]: The x and y coordinates of the pause button in the game."""
-RESUME_BUTTON = (800, 1390)
-"""tuple[int, int]: The x and y coordinates of the resume button in the game."""
-GAME_SCREEN = (800, 800)
-"""tuple[int, int]: The x and y coordinates to click within the game screen."""
-PYCHARM_SCREEN = (3000, 800)
-"""tuple[int, int]: The x and y coordinates to click within the PyCharm screen."""
 ENGLISH_ALPHA = "thequickbrownfoxjumpedoverthelazydog"
-"""str: A string containing all lowercase English letters, used as a fallback."""
 
+class ZTypeBot:
+    def __init__(self):
+        self.prev_result = []
+        self.reader = None
+        self.driver = None
+        self.canvas = None
+        self.actions = None
+    
+    def init_ocr(self):
+        with console.status("[bold cyan]Initializing EasyOCR model (this may take a moment)...[/bold cyan]"):
+            self.reader = easyocr.Reader(['en'], detector='dbnet18') 
+            console.print("[bold green]✓ EasyOCR initialized successfully![/bold green]")
 
-def resize_image():
-    """Resizes the image located at `IMAGE_PATH` to `RESIZE_RATIO`.
+    def init_browser(self):
+        with console.status("[bold cyan]Opening browser and loading ZType...[/bold cyan]"):
+            options = webdriver.ChromeOptions()
+            options.add_argument("--disable-infobars")
+            options.add_argument("--window-size=800,1000")
+            self.driver = webdriver.Chrome(options=options)
+            self.driver.get("https://zty.pe/")
+            
+            # Wait for canvas to be present
+            self.canvas = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((By.ID, "ztype-game-canvas"))
+            )
+            self.actions = ActionChains(self.driver)
+            console.print("[bold green]✓ Browser launched and game loaded![/bold green]")
 
-    This function opens the image at `IMAGE_PATH`, resizes it to the dimensions
-    specified by `RESIZE_RATIO` using anti-aliasing, and then saves the resized
-    image back to the same path. It also prints the original and resized dimensions
-    to the console for debugging purposes.
+    def start_game(self):
+        console.print("[bold yellow]Starting the game...[/bold yellow]")
+        # Focus the body to ensure keystrokes register
+        body = self.driver.find_element(By.TAG_NAME, "body")
+        body.click()
+        time.sleep(1)
+        self.actions.send_keys('new game').perform()
+        time.sleep(2) # Wait for animation to finish
 
-    """
-    foo = Image.open(IMAGE_PATH)
-    print(f"Size of screenshot= {foo.size}")
-    foo = foo.resize(RESIZE_RATIO, Image.Resampling.LANCZOS)
-    foo.save(IMAGE_PATH, optimize=True, quality=95)
-    foo = Image.open(IMAGE_PATH)
-    print(f"Size of resized screenshot= {foo.size}")
+    def process_image(self, png_bytes):
+        # Decode image from bytes
+        nparr = np.frombuffer(png_bytes, np.uint8)
+        img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+        
+        # Resize using cv2
+        img = cv2.resize(img, (500, 800), interpolation=cv2.INTER_LANCZOS4)
+        
+        # Color transform
+        img[np.where((img < [100, 100, 100]).all(axis=2))] = [0, 0, 0]
+        img[np.where((img >= [100, 100, 100]).all(axis=2))] = [225, 225, 225]
+        
+        return img
 
+    def get_ocr_result(self, img) -> list[str]:
+        # Read text from numpy array
+        result = self.reader.readtext(img, detail=0, batch_size=8)
+        result = [block.lower() for block in result if not block.lower().startswith(tuple(SKIP_WORDS))]
+        result.sort(key=len)
 
-def get_ocr_result(prev_result):
-    """Performs OCR on the image at `IMAGE_PATH`, returning a list of words.
+        # Handle stuck letters
+        if len(self.prev_result):
+            self.prev_result.sort(key=len, reverse=True)
+            
+        for prev_word in self.prev_result:
+            if prev_word in result:
+                result.clear()
+                result.append(ENGLISH_ALPHA)
+        
+        return result
 
-    This function pauses the game, uses EasyOCR to extract text from the image,
-    filters out words in `skip_words`, sorts the results by length, and handles
-    a "stuck letter" scenario. It then resumes the game and prints the result.
+    def play(self):
+        console.print(Panel("[bold green]Bot is now playing![/bold green]\n"
+                            "Watch it dominate or press [bold red]Ctrl+C[/bold red] in this terminal to stop."))
+        
+        try:
+            while True:
+                # Capture canvas directly
+                png_bytes = self.canvas.screenshot_as_png
+                img = self.process_image(png_bytes)
+                
+                ocr_result = self.get_ocr_result(img)
+                self.prev_result = ocr_result
+                
+                if ocr_result:
+                    words_str = ", ".join(ocr_result)
+                    console.print(f"[cyan]Detected & Typing:[/cyan] [bold white]{words_str}[/bold white]")
+                    for word in ocr_result:
+                        self.actions.send_keys(word).perform()
+                        time.sleep(0.05) # Small delay
+                else:
+                    console.print("[dim]No words detected...[/dim]")
+                    time.sleep(0.3)
+                    
+        except KeyboardInterrupt:
+            console.print("\n[bold magenta]Bot stopped by user. Closing browser...[/bold magenta]")
+        finally:
+            if self.driver:
+                self.driver.quit()
 
-    Args:
-        prev_result (list[str]): The previous OCR result, used to detect stuck letters.
+@app.command()
+def main():
+    """Start the Z-Type Bot."""
+    console.print(Panel.fit("[bold cyan]🤖 Z-Type Automation Bot[/bold cyan]\n"
+                            "[italic]By @hammaadworks[/italic]", border_style="cyan"))
+    
+    bot = ZTypeBot()
+    bot.init_ocr()
+    bot.init_browser()
+    bot.start_game()
+    bot.play()
 
-    Returns:
-        list[str]: A list of extracted words from the image.
-    """
-    # pause the game
-    print(f'Pausing the game....')
-    pag.click(PAUSE_BUTTON[0], PAUSE_BUTTON[1])
-    reader = easyocr.Reader(['en'], detector='dbnet18')
-    result = reader.readtext(IMAGE_PATH, detail=0, batch_size=8)
-    result = [block.lower() for block in result if not block.lower().startswith(tuple(skip_words))]
-    result.sort(key=len)
-
-    # stuck letter
-    if len(prev_result):
-        prev_result.sort(key=len, reverse=True)
-    for prev_word in prev_result:
-        if prev_word in result:
-            result.clear()
-            result.append(ENGLISH_ALPHA)
-
-    pag.click(RESUME_BUTTON[0], RESUME_BUTTON[1])
-    print(f'Resume and Typing this: {result}')
-    return result
-
-
-def transform_image_colour():
-    """Transforms the colors in the image at `IMAGE_PATH`.
-
-    This function reads the image using OpenCV, sets all pixels with RGB values
-    less than [100, 100, 100] to black ([0, 0, 0]), and sets all pixels with RGB
-    values greater than or equal to [100, 100, 100] to white ([225, 225, 225]).
-    The modified image is then saved back to the same path. A confirmation
-    message is printed to the console.
-    """
-    img = cv2.imread(IMAGE_PATH)
-    img[np.where((img < [100, 100, 100]).all(axis=2))] = [0, 0, 0]
-    img[np.where((img >= [100, 100, 100]).all(axis=2))] = [225, 225, 225]
-    cv2.imwrite(IMAGE_PATH, img)
-    print("Completed color transformations")
-
-
-while True:
-    """The main loop for the Z-Type game bot.
-
-    This loop continuously takes screenshots of the game, processes them
-    for OCR, and then types the extracted words. It uses `pyautogui` to
-    interact with the game. The loop includes pauses, screen captures,
-    image resizing and color transformation, and text typing.
-    """
-    pag.press('space')
-    im = pag.screenshot(region=(325, 355, 950, 1430), imageFilename=IMAGE_PATH)
-    resize_image()
-    transform_image_colour()
-    pag.click(GAME_SCREEN[0], GAME_SCREEN[1])
-    pag.click(PYCHARM_SCREEN[0], PYCHARM_SCREEN[1])
-    pag.click(GAME_SCREEN[0], GAME_SCREEN[1])
-    ocr_result = get_ocr_result(PREV_RESULT)
-    PREV_RESULT = ocr_result
-    for word in ocr_result:
-        pag.write(word)
-        print(f'Typed word: {word}')
-        time.sleep(0.25)
-#
-# while 1:
-#     print(pag.position())
+if __name__ == "__main__":
+    app()

@@ -158,8 +158,8 @@
 
             <!-- 4. AI Documentor -->
             <div class="script-card group bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden card-hover" data-tags="ai gemini documentation precommit hook">
-                <div class="aspect-[9/16] bg-indigo-900 relative overflow-hidden flex items-center justify-center">
-                    <div class="text-indigo-400 font-mono text-xs opacity-40">GEMINI_2.0_FLASH</div>
+                <div class="aspect-[9/16] bg-slate-100 relative overflow-hidden group/image">
+                    <img src="assets/code_documentation/proof.png" alt="AI Documentor Proof" class="object-cover w-full h-full">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
                     <div class="absolute bottom-6 left-6">
                         <span class="px-3 py-1 bg-indigo-600 text-white text-[10px] font-black rounded-full uppercase tracking-tighter">AI-Powered</span>
@@ -180,9 +180,15 @@
 
             <!-- 5. Ztype Game Bot -->
             <div class="script-card group bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden card-hover" data-tags="game bot ocr cv vision">
-                <div class="aspect-[9/16] bg-amber-500 relative overflow-hidden flex items-center justify-center">
-                    <div class="text-white font-black text-4xl italic tracking-tighter opacity-20">Z-TYPE</div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                <div class="aspect-[9/16] bg-slate-100 relative overflow-hidden group/video">
+                    <video id="vid-5" src="assets/ztype/demo.mp4" autoplay muted loop playsinline class="object-cover w-full h-full"></video>
+                    <div class="absolute inset-0 video-overlay flex items-center justify-center opacity-0 group-hover/video:opacity-100 transition-opacity">
+                        <button onclick="openFullscreen('vid-5')" class="p-4 bg-white/20 backdrop-blur-xl rounded-full text-white hover:bg-white/40 transition-all shadow-2xl">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5" />
+                            </svg>
+                        </button>
+                    </div>
                     <div class="absolute bottom-6 left-6">
                         <span class="px-3 py-1 bg-indigo-600 text-white text-[10px] font-black rounded-full uppercase tracking-tighter">CV / OCR</span>
                     </div>
@@ -216,8 +222,8 @@
                         <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded uppercase tracking-wider">Content Creation</span>
                         <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded uppercase tracking-wider">Learning</span>
                     </div>
-                    <a href="https://github.com/hammaadworks/python-bots/tree/master/mytube" target="_blank" class="inline-flex items-center text-slate-900 font-bold text-sm group-hover:gap-3 transition-all">
-                        View Repository <span class="ml-2">&rarr;</span>
+                    <a href="https://github.com/hammaadworks/python-bots/blob/master/ytd_cli.py" target="_blank" class="inline-flex items-center text-slate-900 font-bold text-sm group-hover:gap-3 transition-all">
+                        View Source on GitHub <span class="ml-2">&rarr;</span>
                     </a>
                 </div>
             </div>
