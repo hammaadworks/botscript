@@ -141,16 +141,28 @@ class mytubeApp(App):
             return True
         except: return False
 
+    def write_dl_log(self, text: str):
+        self.query_one("#download-log", Log).write_line(text)
+
+    def update_dl_progress(self, p: float):
+        self.query_one("#dl-progress", ProgressBar).update(progress=p)
+
     @on(Button.Pressed, "#btn-fetch")
-    @work(exclusive=True, thread=True)
     def action_fetch_metadata(self):
         url = self.query_one("#dl-url").value.strip()
         if not url: return
-        
-        log = self.query_one("#download-log")
-        self.call_from_thread(log.write_line, f"[blue]Analyzing:[/blue] {url}")
-        
-        ydl_opts = {'extract_flat': 'in_playlist', 'quiet': True}
+        self.write_dl_log(f"[blue]Analyzing:[/blue] {url}")
+        self.fetch_metadata_worker(url)
+
+    @work(exclusive=True, thread=True)
+    def fetch_metadata_worker(self, url: str):
+        ydl_opts = {
+            'extract_flat': 'in_playlist', 
+            'quiet': True,
+            'js_runtimes': {'node': {}},
+            'extractor_args': {'youtube': ['player_client=ios,web']},
+            'remote_components': ['ejs:github']
+        }
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             try:
                 info = ydl.extract_info(url, download=False)
@@ -164,61 +176,67 @@ class mytubeApp(App):
                         self.query_one("#entry-list", SelectionList).add_options(options)
                         self.query_one("#playlist-selection").add_class("show")
                         self.query_one("#dl-folder-name").value = info.get('title', 'Playlist')
-                        log.write_line(f"[green]Playlist Identified:[/green] {info.get('title')}")
+                        self.write_dl_log(f"[green]Playlist Identified:[/green] {info.get('title')}")
                     self.call_from_thread(update_ui)
                 else:
                     self.is_playlist = False
                     self.fetched_entries = [info]
                     def update_ui_single():
                         self.query_one("#playlist-selection").remove_class("show")
-                        log.write_line(f"[green]Media Identified:[/green] {info.get('title')}")
+                        self.write_dl_log(f"[green]Media Identified:[/green] {info.get('title')}")
                     self.call_from_thread(update_ui_single)
             except Exception as e:
-                self.call_from_thread(log.write_line, f"[red]Error:[/red] {str(e)}")
+                self.call_from_thread(self.write_dl_log, f"[red]Error:[/red] {str(e)}")
 
     @on(Button.Pressed, "#btn-dl-video")
-    def action_dl_video(self): self.start_download(False)
+    def action_dl_video(self): self.prepare_download(False)
 
     @on(Button.Pressed, "#btn-dl-audio")
-    def action_dl_audio(self): self.start_download(True)
+    def action_dl_audio(self): self.prepare_download(True)
 
-    @work(exclusive=True, thread=True)
-    def start_download(self, audio_only: bool):
-        log = self.query_one("#download-log")
-        progress = self.query_one("#dl-progress")
+    def prepare_download(self, audio_only: bool):
         base = self.query_one("#dl-base-path").value.strip() or "downloads"
         folder = self.query_one("#dl-folder-name").value.strip()
-        out_dir = os.path.join(base, folder) if folder else base
-        os.makedirs(out_dir, exist_ok=True)
+        url_input = self.query_one("#dl-url").value
 
         if self.is_playlist:
-            def get_sel(): return list(self.query_one("#entry-list").selected)
-            selected = self.call_from_thread(get_sel)
-        else: selected = [0]
+            selected = list(self.query_one("#entry-list").selected)
+        else: 
+            selected = [0]
+            
+        self.start_download_worker(audio_only, base, folder, selected, url_input)
+
+    @work(exclusive=True, thread=True)
+    def start_download_worker(self, audio_only: bool, base: str, folder: str, selected: list, url_input: str):
+        out_dir = os.path.join(base, folder) if folder else base
+        os.makedirs(out_dir, exist_ok=True)
 
         total = len(selected)
         for i, idx in enumerate(selected):
             entry = self.fetched_entries[idx]
-            url = entry.get('webpage_url') or entry.get('url') or self.query_one("#dl-url").value
+            url = entry.get('webpage_url') or entry.get('url') or url_input
             
             def hook(d):
                 if d['status'] == 'downloading':
                     p = d.get('downloaded_bytes', 0) / (d.get('total_bytes') or 1)
-                    self.call_from_thread(progress.update, progress=((i + p) / total) * 100)
+                    self.call_from_thread(self.update_dl_progress, ((i + p) / total) * 100)
             
             opts = {
                 'format': 'bestaudio/best' if audio_only else 'bestvideo+bestaudio/best',
                 'outtmpl': f'{out_dir}/%(title)s.%(ext)s',
-                'progress_hooks': [hook], 'quiet': True
+                'progress_hooks': [hook], 'quiet': True,
+                'js_runtimes': {'node': {}},
+                'extractor_args': {'youtube': ['player_client=ios,web']},
+                'remote_components': ['ejs:github']
             }
             if audio_only: opts['postprocessors'] = [{'key': 'FFmpegExtractAudio','preferredcodec': 'mp3','preferredquality': '192'}]
             
             with yt_dlp.YoutubeDL(opts) as ydl:
                 try: ydl.download([url])
-                except Exception as e: self.call_from_thread(log.write_line, f"[red]Failed:[/red] {str(e)}")
+                except Exception as e: self.call_from_thread(self.write_dl_log, f"[red]Failed:[/red] {str(e)}")
         
-        self.call_from_thread(progress.update, progress=100)
-        self.call_from_thread(log.write_line, "[bold green]Success: Batch Download Finished![/bold green]")
+        self.call_from_thread(self.update_dl_progress, 100.0)
+        self.call_from_thread(self.write_dl_log, "[bold green]Success: Batch Download Finished![/bold green]")
 
     # --- A-B Looper Logic ---
     @on(Button.Pressed, "#btn-start-loop")
@@ -235,6 +253,9 @@ class mytubeApp(App):
         self.loop_count = 0
         self.monitor_loop(start, end)
 
+    def update_loop_count(self):
+        self.query_one("#stat-count").update(str(self.loop_count))
+
     @work(exclusive=True, thread=True)
     def monitor_loop(self, start, end):
         time.sleep(1)
@@ -245,7 +266,7 @@ class mytubeApp(App):
                 if curr >= dur:
                     self.player.set_time(int(start * 1000))
                     self.loop_count += 1
-                    self.call_from_thread(self.query_one("#stat-count").update, str(self.loop_count))
+                    self.call_from_thread(self.update_loop_count)
             except: break
             time.sleep(0.1)
 
@@ -254,14 +275,18 @@ class mytubeApp(App):
         self.is_looping = False
         if self.player: self.player.stop()
 
+    def write_clip_log(self, text: str):
+        self.query_one("#clip-log", Log).write_line(text)
+
     @on(Button.Pressed, "#btn-clip")
-    @work(exclusive=True, thread=True)
     def action_advanced_clip(self):
         path = self.query_one("#clip-path").value.strip()
         raw = self.query_one("#clip-segments").value.strip()
-        log = self.query_one("#clip-log")
         if not os.path.exists(path) or not raw: return
+        self.advanced_clip_worker(path, raw)
 
+    @work(exclusive=True, thread=True)
+    def advanced_clip_worker(self, path: str, raw: str):
         try:
             segments = [s.strip().split(',') for s in raw.split(';')]
             name, ext = os.path.splitext(path)
@@ -279,9 +304,9 @@ class mytubeApp(App):
             subprocess.run(["ffmpeg", "-f", "concat", "-safe", "0", "-i", "list.txt", "-c", "copy", output, "-y"], check=True, capture_output=True)
             for c in clips: os.remove(c)
             os.remove("list.txt")
-            self.call_from_thread(log.write_line, f"[green]Stitched clip created:[/green] {output}")
+            self.call_from_thread(self.write_clip_log, f"[green]Stitched clip created:[/green] {output}")
         except Exception as e:
-            self.call_from_thread(log.write_line, f"[red]Clip Error:[/red] {str(e)}")
+            self.call_from_thread(self.write_clip_log, f"[red]Clip Error:[/red] {str(e)}")
 
 if __name__ == "__main__":
     mytubeApp().run()

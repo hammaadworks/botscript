@@ -24,5 +24,5 @@ dependencies = [
     "selenium>=4.44.0",
     "textual>=0.85.0",
     "typer>=0.12.3",
-    "yt-dlp>=2026.3.17",
+    "yt-dlp>=2026.8.19",
 ]

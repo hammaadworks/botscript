@@ -16,6 +16,9 @@ def get_yt_dlp_info(url: str):
         'extract_flat': 'in_playlist',
         'quiet': True,
         'no_warnings': True,
+        'js_runtimes': {'node': {}},
+        'extractor_args': {'youtube': ['player_client=ios,web']},
+        'remote_components': ['ejs:github'],
         # Force generic extractor for non-standard links if needed
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -66,7 +69,7 @@ def download(url: str = typer.Argument(None, help="YouTube Link (Shorts, Video, 
         console.print(f"[green]Media Found:[/green] {info.get('title')}")
         to_download = [info]
 
-    audio_only = questionary.confirm("Download Audio (MP3) only?").ask()
+    audio_only = questionary.confirm("Download Audio (MP3) only?", default=False).ask()
     res = "720" if not audio_only else None
     if not audio_only:
         res = questionary.select("Max Resolution:", choices=["360", "720", "1080", "best"], default="720").ask()
@@ -83,9 +86,19 @@ def download(url: str = typer.Argument(None, help="YouTube Link (Shorts, Video, 
         title = entry.get('title', 'Unknown')
         console.print(f"\n[bold blue]↓[/bold blue] Downloading: [bold]{title}[/bold]")
         
+        if audio_only:
+            fmt = 'bestaudio/best'
+        elif res == "best":
+            fmt = 'bestvideo+bestaudio/best'
+        else:
+            fmt = f'bestvideo[height<={res}]+bestaudio/bestvideo[height<={res}]+bestaudio/best'
+            
         ydl_opts = {
             'outtmpl': f'{output_dir}/%(title)s.%(ext)s',
-            'format': 'bestaudio/best' if audio_only else f'bestvideo[height<={res}]+bestaudio/best[height<={res}]' if res != "best" else "best",
+            'format': fmt,
+            'js_runtimes': {'node': {}},
+            'extractor_args': {'youtube': ['player_client=ios,web']},
+            'remote_components': ['ejs:github'],
         }
         if audio_only:
             ydl_opts['postprocessors'] = [{'key': 'FFmpegExtractAudio','preferredcodec': 'mp3','preferredquality': '192'}]
