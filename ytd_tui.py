@@ -159,6 +159,8 @@ class mytubeApp(App):
         ydl_opts = {
             'extract_flat': 'in_playlist', 
             'quiet': True,
+            'geo_bypass': True,
+            'geo_bypass_country': 'DE',
             'js_runtimes': {'node': {}},
             'extractor_args': {'youtube': ['player_client=ios,web']},
             'remote_components': ['ejs:github']
@@ -225,6 +227,9 @@ class mytubeApp(App):
                 'format': 'bestaudio/best' if audio_only else 'bestvideo+bestaudio/best',
                 'outtmpl': f'{out_dir}/%(title)s.%(ext)s',
                 'progress_hooks': [hook], 'quiet': True,
+                'geo_bypass': True,
+                'geo_bypass_country': 'DE',
+                'concurrent_fragment_downloads': 8,
                 'js_runtimes': {'node': {}},
                 'extractor_args': {'youtube': ['player_client=ios,web']},
                 'remote_components': ['ejs:github']
